@@ -350,10 +350,9 @@ $user = $_SESSION['user'];
                                 </option>
                             <?php endforeach; ?>
                         </select>
-                        <button type="button" onclick="openColisModal()" 
-                                style="background: #17a2b8; color: white; border: none; padding: 0 20px; border-radius: 6px; cursor: pointer;">
+                        <a href="/app/livraison?colis=1" style="background:#17a2b8; color:white; padding:20px 20px; border-radius:6px; text-decoration:none;">
                             +
-                        </button>
+                        </a>
                     </div>
                 </div>
                 
@@ -476,27 +475,27 @@ $user = $_SESSION['user'];
                                     </td>
                                     <td>
                                         <div class="action-buttons">
-                                            <?php if ($livraison['etatlivraison'] == 'EN_ATTENTE'): ?>
-                                                <a href="/app/livraison/<?= $livraison['id'] ?>">
-                                                    <button onclick="updateLivraisonStatus(<?php echo $livraison['id']; ?>, 2)" 
-                                                        class="btn-action btn-livrer" title="Marquer comme livré">
-                                                    ✓ Livrer
-                                                    </button>
-                                                </a>
-                                                <a href="">
-                                                    <button onclick="updateLivraisonStatus(<?php echo $livraison['id']; ?>, 3)" 
-                                                            class="btn-action btn-annuler" title="Annuler la livraison">
-                                                        ✗ Annuler
-                                                    </button>
-                                                </a>
-                                            <?php else: ?>
-                                                <button class="btn-action btn-desactiver" disabled>
+                                        <?php if ($livraison['etatlivraison'] === 'EN_ATTENTE'): ?>
+
+                                            <form method="POST" action="/app/livraison/<?= $livraison['id'] ?>" style="display:inline;">
+                                                <input type="hidden" name="idEtat" value="2">
+                                                <button type="submit" class="btn-action btn-livrer">
                                                     ✓ Livrer
                                                 </button>
-                                                <button class="btn-action btn-desactiver" disabled>
+                                            </form>
+
+                                            <form method="POST" action="/app/livraison/<?= $livraison['id'] ?>" style="display:inline;">
+                                                <input type="hidden" name="idEtat" value="3">
+                                                <button type="submit" class="btn-action btn-annuler">
                                                     ✗ Annuler
                                                 </button>
+                                            </form>
+
+                                            <?php else: ?>
+                                            <button class="btn-action btn-desactiver" disabled>✓ Livrer</button>
+                                            <button class="btn-action btn-desactiver" disabled>✗ Annuler</button>
                                             <?php endif; ?>
+
                                         </div>
                                     </td>
                                 </tr>
@@ -508,35 +507,41 @@ $user = $_SESSION['user'];
         </section>
     </main>
     
-    <!-- Modal pour créer un colis -->
-    <div id="colisModal" class="modal">
+    <!-- fORM ajout colis -->
+    <?php if (isset($_GET['colis']) && $_GET['colis'] == 1): ?>
+        <div class="modal" style="display:flex;">
         <div class="modal-content">
-            <h2 style="margin-bottom: 20px;">➕ Nouveau Colis</h2>
-            <form id="colisForm" class="colis-form">
+            <h2>➕ Nouveau Colis</h2>
+
+            <form method="POST" action="/app/colis">
                 <div class="form-group">
-                    <label for="newDescription">Description</label>
-                    <input type="text" id="newDescription" 
-                           placeholder="Ex: Cartons alimentaires" required>
+                    <label>Description</label>
+                    <input type="text" name="description" required>
                 </div>
+
                 <div class="form-group">
-                    <label for="newPoids">Poids (kg)</label>
-                    <input type="number" id="newPoids" step="0.01" min="0" required>
+                    <label>Poids (kg)</label>
+                    <input type="number" name="poids" step="0.01" required>
                 </div>
+
                 <div class="form-group">
-                    <label for="newPrix">Prix unitaire (Ar/kg)</label>
-                    <input type="number" id="newPrix" step="0.01" min="0" required>
+                    <label>Prix unitaire (Ar/kg)</label>
+                    <input type="number" name="prix" step="0.01" required>
                 </div>
-                <div style="display: flex; gap: 10px;">
+
+                <div style="display:flex; gap:10px;">
                     <button type="submit" class="btn-primary">Créer</button>
-                    <button type="button" onclick="closeColisModal()" 
-                            style="background: #6c757d; color: white; border: none; padding: 14px 30px; border-radius: 8px; cursor: pointer;">
+
+                    <a href="/app/livraison" 
+                    style="background:#6c757d; color:white; padding:14px 30px; border-radius:8px; text-decoration:none;">
                         Annuler
-                    </button>
+                    </a>
                 </div>
             </form>
         </div>
     </div>
-    
+    <?php endif; ?>
+
     <script>
         // Gestion du formulaire de livraison
         // document.getElementById('livraisonForm').addEventListener('submit', function(e) {
