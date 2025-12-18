@@ -46,7 +46,8 @@ if (empty($app) === true) {
 $app->path(__DIR__ . $ds . '..' . $ds . '..');
 
 // Core config variables
-$app->set('flight.base_url', '/',);           // Base URL for your app. Change if app is in a subdirectory (e.g., '/myapp/')
+// $app->set('flight.base_url', '/',);           // Base URL for your app. Change if app is in a subdirectory (e.g., '/myapp/')
+ $app->set('flight.base_url', '/ETU004219/livraisonNoelS3',); 
 $app->set('flight.case_sensitive', false);    // Set true for case sensitive routes. Default: false
 $app->set('flight.log_errors', true);         // Log errors to file. Recommended: true in production
 $app->set('flight.handle_errors', false);     // Let Tracy handle errors if false. Set true to use Flight's error handler
@@ -61,16 +62,41 @@ $app->set('csp_nonce', $nonce);
 /**********************************************
  *           User Configuration               *
  **********************************************/
+// return [
+// 	/**************************************
+// 	 *         Database Settings          *
+// 	 **************************************/
+// 	'database' => [
+// 		// MySQL Example:
+// 		'host'     => '127.0.0.1',      // Database host (e.g., 'localhost', 'db.example.com')
+// 		'dbname'   => 'livraisonNoelS3',   // Database name (e.g., 'flightphp')
+// 		'user'     => 'root',  // Database user (e.g., 'root')
+// 		'password' => '',  // Database password (never commit real passwords)
+
+// 		// SQLite Example:
+// 		// 'file_path' => __DIR__ . $ds . '..' . $ds . 'database.sqlite', // Path to SQLite file
+// 	],
+
+// 	// Google OAuth Credentials
+// 	// 'google_oauth' => [
+// 	//     'client_id'     => 'your_client_id',     // Google API client ID
+// 	//     'client_secret' => 'your_client_secret', // Google API client secret
+// 	//     'redirect_uri'  => 'your_redirect_uri',  // Redirect URI for OAuth callback
+// 	// ],
+
+// 	// Add more configuration sections below as needed
+// ];
+
 return [
 	/**************************************
 	 *         Database Settings          *
 	 **************************************/
 	'database' => [
 		// MySQL Example:
-		'host'     => '127.0.0.1',      // Database host (e.g., 'localhost', 'db.example.com')
-		'dbname'   => 'livraisonNoelS3',   // Database name (e.g., 'flightphp')
-		'user'     => 'root',  // Database user (e.g., 'root')
-		'password' => '',  // Database password (never commit real passwords)
+		'host'     => 'localhost',      // Database host (e.g., 'localhost', 'db.example.com')
+		'dbname'   => 'db_S2_ETU004219',   // Database name (e.g., 'flightphp')
+		'user'     => 'ETU004219',  // Database user (e.g., 'root')
+		'password' => '0PtxTqR3',  // Database password (never commit real passwords)
 
 		// SQLite Example:
 		// 'file_path' => __DIR__ . $ds . '..' . $ds . 'database.sqlite', // Path to SQLite file
