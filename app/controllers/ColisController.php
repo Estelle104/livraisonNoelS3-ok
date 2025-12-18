@@ -17,7 +17,7 @@ class ColisController {
         $colisModel = new Colis();
         $colisModel->create($description, $poids, $prix);
 
-        header('Location: /app/livraison');
+        header('Location: <?= BASE_URL ?>/livraison');
         exit;
     }
 

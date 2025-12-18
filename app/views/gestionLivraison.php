@@ -1,7 +1,7 @@
 <?php
 // session_start();
 if (!isset($_SESSION['logged_in'])) {
-    header('Location: /login');
+    header('Location: ' . BASE_URL . '/login');
     exit();
 }
 
@@ -325,9 +325,9 @@ $user = $_SESSION['user'];
         </div>
         
         <div class="nav-buttons">
-            <a href="/app/accueil" class="nav-btn">🏠 Accueil</a>
-            <a href="/app/benefice" class="nav-btn">💰 Bénéfices</a>
-            <a href="/logout" class="nav-btn">🔒 Déconnexion</a>
+            <a href="<?= BASE_URL ?>/accueil" class="nav-btn">🏠 Accueil</a>
+            <a href="<?= BASE_URL ?>/benefice" class="nav-btn">💰 Bénéfices</a>
+            <a href="<?= BASE_URL ?>/logout" class="nav-btn">🔒 Déconnexion</a>
         </div>
     </header>
     
@@ -338,7 +338,7 @@ $user = $_SESSION['user'];
             
             <div id="message" class="message"></div>
             
-            <form id="livraisonForm" action="/app/livraison" method="POST">
+            <form id="livraisonForm" action="<?= BASE_URL ?>/livraison" method="POST">
                 <div class="form-group">
                     <label for="idColis">Colis *</label>
                     <div style="display: flex; gap: 10px;">
@@ -350,7 +350,7 @@ $user = $_SESSION['user'];
                                 </option>
                             <?php endforeach; ?>
                         </select>
-                        <a href="/app/livraison?colis=1" style="background:#17a2b8; color:white; padding:20px 20px; border-radius:6px; text-decoration:none;">
+                        <a href="<?= BASE_URL ?>/livraison?colis=1" style="background:#17a2b8; color:white; padding:20px 20px; border-radius:6px; text-decoration:none;">
                             +
                         </a>
                     </div>
@@ -477,14 +477,14 @@ $user = $_SESSION['user'];
                                         <div class="action-buttons">
                                         <?php if ($livraison['etatlivraison'] === 'EN_ATTENTE'): ?>
 
-                                            <form method="POST" action="/app/livraison/<?= $livraison['id'] ?>" style="display:inline;">
+                                            <form method="POST" action="<?= BASE_URL ?>/livraison/<?= $livraison['id'] ?>" style="display:inline;">
                                                 <input type="hidden" name="idEtat" value="2">
                                                 <button type="submit" class="btn-action btn-livrer">
                                                     ✓ Livrer
                                                 </button>
                                             </form>
 
-                                            <form method="POST" action="/app/livraison/<?= $livraison['id'] ?>" style="display:inline;">
+                                            <form method="POST" action="<?= BASE_URL ?>/livraison/<?= $livraison['id'] ?>" style="display:inline;">
                                                 <input type="hidden" name="idEtat" value="3">
                                                 <button type="submit" class="btn-action btn-annuler">
                                                     ✗ Annuler
@@ -513,7 +513,7 @@ $user = $_SESSION['user'];
         <div class="modal-content">
             <h2>➕ Nouveau Colis</h2>
 
-            <form method="POST" action="/app/colis">
+            <form method="POST" action="<?= BASE_URL ?>/colis">
                 <div class="form-group">
                     <label>Description</label>
                     <input type="text" name="description" required>
@@ -532,7 +532,7 @@ $user = $_SESSION['user'];
                 <div style="display:flex; gap:10px;">
                     <button type="submit" class="btn-primary">Créer</button>
 
-                    <a href="/app/livraison" 
+                    <a href="<?= BASE_URL ?>/livraison" 
                     style="background:#6c757d; color:white; padding:14px 30px; border-radius:8px; text-decoration:none;">
                         Annuler
                     </a>
@@ -549,7 +549,7 @@ $user = $_SESSION['user'];
             
         //     const formData = new FormData(this);
             
-        //     fetch('/app/livraison', {
+        //     fetch('<?= BASE_URL ?>/livraison', {
         //         method: 'POST',
         //         body: formData
         //     })
@@ -579,7 +579,7 @@ $user = $_SESSION['user'];
         //         prixUnitaire: document.getElementById('newPrix').value
         //     };
             
-        //     fetch('/app/colis', {
+        //     fetch('<?= BASE_URL ?>/colis', {
         //         method: 'POST',
         //         headers: {
         //             'Content-Type': 'application/x-www-form-urlencoded',
@@ -612,7 +612,7 @@ $user = $_SESSION['user'];
             const data = new URLSearchParams();
             data.append('idEtat', newStatusId);
             
-            fetch(`/app/livraison/${livraisonId}`, {
+            fetch(`<?= BASE_URL ?>/livraison/${livraisonId}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
@@ -636,7 +636,7 @@ $user = $_SESSION['user'];
         
         // Rafraîchir la liste des livraisons
         function refreshLivraisons() {
-            fetch('/app/livraison')
+            fetch('<?= BASE_URL ?>/livraison')
             .then(response => response.text())
             .then(html => {
                 // Cette fonction nécessiterait une API dédiée pour la liste seule

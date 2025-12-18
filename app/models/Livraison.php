@@ -44,7 +44,7 @@ class Livraison extends Model {
         
         $this->execute($sql, $params);
         return $this->getLastInsertId();
-        header("Location:/app/livraison");
+        header("Location:" . BASE_URL . "/livraison");
     }
 
     public function updateEtat($id, $idEtat) {

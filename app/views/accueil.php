@@ -1,7 +1,7 @@
 <?php
 // session_start();
 if (!isset($_SESSION['logged_in'])) {
-    header('Location: /login');
+    header('Location: ' . BASE_URL . '/login');
     exit();
 }
 
@@ -189,7 +189,7 @@ $user = $_SESSION['user'];
         
         <div class="user-info">
             <span class="user-name">Bienvenue, <?php echo htmlspecialchars($user['nomUser']); ?>!</span>
-            <a href="/logout" class="btn-logout">Déconnexion</a>
+            <a href="<?= BASE_URL ?>/logout" class="btn-logout">Déconnexion</a>
         </div>
     </header>
     
@@ -202,7 +202,7 @@ $user = $_SESSION['user'];
             </p>
             
             <div class="dashboard-grid">
-                <a href="/app/livraison" class="dashboard-card livraison-card">
+                <a href="<?= BASE_URL ?>/livraison" class="dashboard-card livraison-card">
                     <div class="card-icon">🚚</div>
                     <h3 class="card-title">Gestion des Livraisons</h3>
                     <p class="card-description">
@@ -210,7 +210,7 @@ $user = $_SESSION['user'];
                     </p>
                 </a>
                 
-                <a href="/app/benefice" class="dashboard-card benefice-card">
+                <a href="<?= BASE_URL ?>/benefice" class="dashboard-card benefice-card">
                     <div class="card-icon">💰</div>
                     <h3 class="card-title">Bénéfices & Rapports</h3>
                     <p class="card-description">
