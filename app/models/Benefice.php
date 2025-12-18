@@ -1,7 +1,7 @@
 <?php
 namespace app\models;
 
-USE PDO;
+use PDO;
 
 class Benefice extends Model {
     protected $table = 'livraison_v_HistoriqueBenefice';
@@ -10,18 +10,28 @@ class Benefice extends Model {
         $sql = "SELECT * FROM {$this->table} WHERE 1=1";
         $params = [];
 
+        // CORRECTION : Votre vue a 'jour' comme DATE, pas comme numéro
+        // Si vous voulez filtrer par numéro de jour, utilisez DAY(jour)
+
         if (!empty($filters['jour'])) {
-            $sql .= " AND jour = ?";
+            $op = $filters['jour_op'] ?? '=';
+            
+            // OPTION 1 : Si 'jour' dans la vue est DATE
+            $sql .= " AND DAY(jour) $op ?";
+            // OPTION 2 : Si 'jour' dans la vue est déjà un numéro (1-31)
+            // $sql .= " AND jour $op ?"; // UNIQUEMENT si c'est un numéro
             $params[] = $filters['jour'];
         }
 
         if (!empty($filters['mois'])) {
-            $sql .= " AND mois = ?";
+            $op = $filters['mois_op'] ?? '=';
+            $sql .= " AND mois $op ?";
             $params[] = $filters['mois'];
         }
 
         if (!empty($filters['annee'])) {
-            $sql .= " AND annee = ?";
+            $op = $filters['annee_op'] ?? '=';
+            $sql .= " AND annee $op ?";
             $params[] = $filters['annee'];
         }
 
@@ -36,17 +46,21 @@ class Benefice extends Model {
         $params = [];
 
         if (!empty($filters['jour'])) {
-            $sql .= " AND jour = ?";
+            $op = $filters['jour_op'] ?? '=';
+            // Même correction ici
+            $sql .= " AND DAY(jour) $op ?";
             $params[] = $filters['jour'];
         }
 
         if (!empty($filters['mois'])) {
-            $sql .= " AND mois = ?";
+            $op = $filters['mois_op'] ?? '=';
+            $sql .= " AND mois $op ?";
             $params[] = $filters['mois'];
         }
 
         if (!empty($filters['annee'])) {
-            $sql .= " AND annee = ?";
+            $op = $filters['annee_op'] ?? '=';
+            $sql .= " AND annee $op ?";
             $params[] = $filters['annee'];
         }
 
