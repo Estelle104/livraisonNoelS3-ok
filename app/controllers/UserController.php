@@ -21,11 +21,11 @@ class UserController {
             if ($user) {
                 $_SESSION['user'] = $user;
                 $_SESSION['logged_in'] = true;
-                header('Location: /app/accueil');
+                header('Location: ' . BASE_URL . '/accueil');
                 exit();
             } else {
                 $_SESSION['error'] = 'Identifiants incorrects';
-                header('Location: /login');
+                header('Location:' . BASE_URL . '/login');
                 exit();
             }
         }
@@ -35,7 +35,7 @@ class UserController {
         // session_start();
         
         if (!isset($_SESSION['logged_in'])) {
-            header('Location: /login');
+            header('Location: ' . BASE_URL . '/login');
             exit();
         }
 
@@ -45,7 +45,7 @@ class UserController {
     public function logout() {
         // session_start();
         session_destroy();
-        header('Location: /login');
+        header('Location: ' . BASE_URL . '/login');
         exit();
     }
 }
