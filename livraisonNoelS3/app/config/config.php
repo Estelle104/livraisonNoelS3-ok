@@ -1,5 +1,12 @@
 <?php
 
+<<<<<<< Updated upstream
+=======
+if (!defined('BASE_URL')) {
+    define('BASE_URL', rtrim(dirname($_SERVER['SCRIPT_NAME']), '/'));
+}
+
+>>>>>>> Stashed changes
 /**********************************************
  *      FlightPHP Skeleton Sample Config      *
  **********************************************
@@ -46,6 +53,10 @@ if (empty($app) === true) {
 $app->path(__DIR__ . $ds . '..' . $ds . '..');
 
 // Core config variables
+<<<<<<< Updated upstream
+=======
+// $app->set('flight.base_url', BASE_URL);
+>>>>>>> Stashed changes
 // $app->set('flight.base_url', '/',);           // Base URL for your app. Change if app is in a subdirectory (e.g., '/myapp/')
  $app->set('flight.base_url', '/ETU004219/livraisonNoelS3',); 
 $app->set('flight.case_sensitive', false);    // Set true for case sensitive routes. Default: false
@@ -93,10 +104,17 @@ return [
 	 **************************************/
 	'database' => [
 		// MySQL Example:
+<<<<<<< Updated upstream
 		'host'     => 'localhost',      // Database host (e.g., 'localhost', 'db.example.com')
 		'dbname'   => 'db_S2_ETU004219',   // Database name (e.g., 'flightphp')
 		'user'     => 'ETU004219',  // Database user (e.g., 'root')
 		'password' => '0PtxTqR3',  // Database password (never commit real passwords)
+=======
+		'host'     => '127.0.0.1',      // Database host (e.g., 'localhost', 'db.example.com')
+		'dbname'   => 'livraisonNoelS3',   // Database name (e.g., 'flightphp')
+		'user'     => 'root',  // Database user (e.g., 'root')
+		'password' => '',  // Database password (never commit real passwords)
+>>>>>>> Stashed changes
 
 		// SQLite Example:
 		// 'file_path' => __DIR__ . $ds . '..' . $ds . 'database.sqlite', // Path to SQLite file
