@@ -1,8 +1,8 @@
 <?php
 
-if (!defined('BASE_URL')) {
-    define('BASE_URL', rtrim(dirname($_SERVER['SCRIPT_NAME']), '/'));
-}
+// if (!defined('BASE_URL')) {
+//     define('BASE_URL', rtrim(dirname($_SERVER['SCRIPT_NAME']), '/'));
+// }
 
 /**********************************************
  *      FlightPHP Skeleton Sample Config      *
@@ -50,11 +50,12 @@ if (empty($app) === true) {
 $app->path(__DIR__ . $ds . '..' . $ds . '..');
 
 // Core config variables
-// define('BASE_URL', 'http://172.16.5.2/ETU004219/livraisonNoelS3');
-// define('BASE_URL', '/ETU004219/livraisonNoelS3/');
+// define('BASE_URL', 'http://172.16.5.2/ETU004185/livraisonNoelS3');
+define('BASE_URL', '/ETU004185/livraisonNoelS3/');
+// define('BASE_URL', '/ETU004185/livraisonNoelS3/app');
 
-// $app->set('flight.base_url', BASE_URL);
-$app->set('flight.base_url', BASE_URL,);           // Base URL for your app. Change if app is in a subdirectory (e.g., '/myapp/')
+// $app->set('flight.base_url', '/');
+$app->set('flight.base_url', BASE_URL);           // Base URL for your app. Change if app is in a subdirectory (e.g., '/myapp/')
 $app->set('flight.case_sensitive', false);    // Set true for case sensitive routes. Default: false
 $app->set('flight.log_errors', true);         // Log errors to file. Recommended: true in production
 $app->set('flight.handle_errors', false);     // Let Tracy handle errors if false. Set true to use Flight's error handler
@@ -68,44 +69,17 @@ $app->set('csp_nonce', $nonce);
 
 /**********************************************
  *           User Configuration               *
- **********************************************/
-return [
-	/**************************************
-	 *         Database Settings          *
-	 **************************************/
-	'database' => [
-		// MySQL Example:
-		'host'     => '127.0.0.1',      // Database host (e.g., 'localhost', 'db.example.com')
-		'dbname'   => 'livraisonNoelS3',   // Database name (e.g., 'flightphp')
-		'user'     => 'root',  // Database user (e.g., 'root')
-		'password' => '',  // Database password (never commit real passwords)
-
-		
-		// SQLite Example:
-		// 'file_path' => __DIR__ . $ds . '..' . $ds . 'database.sqlite', // Path to SQLite file
-	],
-
-	// Google OAuth Credentials
-	// 'google_oauth' => [
-	//     'client_id'     => 'your_client_id',     // Google API client ID
-	//     'client_secret' => 'your_client_secret', // Google API client secret
-	//     'redirect_uri'  => 'your_redirect_uri',  // Redirect URI for OAuth callback
-	// ],
-
-	// Add more configuration sections below as needed
-];
-
+//  **********************************************/
 // return [
 // 	/**************************************
 // 	 *         Database Settings          *
 // 	 **************************************/
 // 	'database' => [
 // 		// MySQL Example:
-// 		'host'     => 'localhost',  
-// 		'port'	   => '3306',    // Database host (e.g., 'localhost', 'db.example.com')
-// 		'dbname'   => 'db_s2_ETU004219',   // Database name (e.g., 'flightphp')
-// 		'user'     => 'ETU004219',  // Database user (e.g., 'root')
-// 		'password' => '0PtxTqR3',  // Database password (never commit real passwords)
+// 		'host'     => '127.0.0.1',      // Database host (e.g., 'localhost', 'db.example.com')
+// 		'dbname'   => 'livraisonNoelS3',   // Database name (e.g., 'flightphp')
+// 		'user'     => 'root',  // Database user (e.g., 'root')
+// 		'password' => '',  // Database password (never commit real passwords)
 
 		
 // 		// SQLite Example:
@@ -121,3 +95,30 @@ return [
 
 // 	// Add more configuration sections below as needed
 // ];
+
+return [
+	/**************************************
+	 *         Database Settings          *
+	 **************************************/
+	'database' => [
+		// MySQL Example:
+		'host'     => 'localhost',  
+		// 'port'	   => '3306',    // Database host (e.g., 'localhost', 'db.example.com')
+		'dbname'   => 'db_s2_ETU004185',   // Database name (e.g., 'flightphp')
+		'user'     => 'ETU004185',  // Database user (e.g., 'root')
+		'password' => 'aDivEtrZ',  // Database password (never commit real passwords)
+
+		
+		// SQLite Example:
+		// 'file_path' => __DIR__ . $ds . '..' . $ds . 'database.sqlite', // Path to SQLite file
+	],
+
+	// Google OAuth Credentials
+	// 'google_oauth' => [
+	//     'client_id'     => 'your_client_id',     // Google API client ID
+	//     'client_secret' => 'your_client_secret', // Google API client secret
+	//     'redirect_uri'  => 'your_redirect_uri',  // Redirect URI for OAuth callback
+	// ],
+
+	// Add more configuration sections below as needed
+];

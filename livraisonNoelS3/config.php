@@ -50,10 +50,12 @@ if (empty($app) === true) {
 $app->path(__DIR__ . $ds . '..' . $ds . '..');
 
 // Core config variables
-// define('BASE_URL', 'http://localhost/livraisonNoelS3');
+// define('BASE_URL', 'http://172.16.5.2/ETU004185/livraisonNoelS3');
+define('BASE_URL', '/ETU004185/livraisonNoelS3');
+// define('BASE_URL', '/ETU004185/livraisonNoelS3/app');
 
-// $app->set('flight.base_url', BASE_URL);
-$app->set('flight.base_url', '/');           // Base URL for your app. Change if app is in a subdirectory (e.g., '/myapp/')
+// $app->set('flight.base_url', '/');
+$app->set('flight.base_url', BASE_URL);           // Base URL for your app. Change if app is in a subdirectory (e.g., '/myapp/')
 $app->set('flight.case_sensitive', false);    // Set true for case sensitive routes. Default: false
 $app->set('flight.log_errors', true);         // Log errors to file. Recommended: true in production
 $app->set('flight.handle_errors', false);     // Let Tracy handle errors if false. Set true to use Flight's error handler
@@ -67,14 +69,14 @@ $app->set('csp_nonce', $nonce);
 
 /**********************************************
  *           User Configuration               *
- **********************************************/
+//  **********************************************/
 // return [
 // 	/**************************************
 // 	 *         Database Settings          *
 // 	 **************************************/
 // 	'database' => [
 // 		// MySQL Example:
-// 		'host'     => 'localhost',      // Database host (e.g., 'localhost', 'db.example.com')
+// 		'host'     => '127.0.0.1',      // Database host (e.g., 'localhost', 'db.example.com')
 // 		'dbname'   => 'livraisonNoelS3',   // Database name (e.g., 'flightphp')
 // 		'user'     => 'root',  // Database user (e.g., 'root')
 // 		'password' => '',  // Database password (never commit real passwords)
@@ -100,10 +102,11 @@ return [
 	 **************************************/
 	'database' => [
 		// MySQL Example:
-		'host'     => 'localhost',      // Database host (e.g., 'localhost', 'db.example.com')
-		'dbname'   => 'db_s2_ETU004219',   // Database name (e.g., 'flightphp')
-		'user'     => 'ETU004219',  // Database user (e.g., 'root')
-		'password' => '0PtxTqR3',  // Database password (never commit real passwords)
+		'host'     => 'localhost',  
+		// 'port'	   => '3306',    // Database host (e.g., 'localhost', 'db.example.com')
+		'dbname'   => 'db_s2_ETU004185',   // Database name (e.g., 'flightphp')
+		'user'     => 'ETU004185',  // Database user (e.g., 'root')
+		'password' => 'aDivEtrZ',  // Database password (never commit real passwords)
 
 		
 		// SQLite Example:

@@ -131,7 +131,7 @@
             ?>
         </div>
         
-        <form action="/login" method="POST" id="loginForm">
+        <form action="<?= BASE_URL ?>/login" method="POST" id="loginForm">
             <div class="form-group">
                 <label for="loginUser">Nom d'utilisateur</label>
                 <input type="text" id="loginUser" name="loginUser" required 
