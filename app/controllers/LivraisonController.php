@@ -72,10 +72,11 @@ class LivraisonController {
             $livraisonModel = new Livraison();
             $id = $livraisonModel->create($data);
 
-            // header("Location:/app/application");
+            header('Location: /app/livraison');
+            exit;
             // header('Content-Type: application/json');
             // echo json_encode(['success' => true, 'id' => $id]);
-            echo "Votre livraison a bien ete enregistrer";
+            // echo "Votre livraison a bien ete enregistrer";
         }
     }
 

@@ -41,6 +41,7 @@ $router->group('', function(Router $router) use ($app) {
     // Colis
     $router->post('/app/colis', [ColisController::class, 'store']);
 
+
     // Redirection racine
     $router->get('/', function() use ($app) {
         $app->redirect('/app/accueil');
