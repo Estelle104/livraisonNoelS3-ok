@@ -15,6 +15,8 @@ use flight\Engine;
 
 session_start();
 
+$router->get('/', Flight::render('test', $mesage = ['andrana']));
+
 // Routes publiques
 $router->get('/login', [UserController::class, 'loginForm']);
 $router->post('/login', [UserController::class, 'login']);
