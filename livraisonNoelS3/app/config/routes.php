@@ -24,6 +24,11 @@ $router->post('/login', [UserController::class, 'login']);
 // Groupe sécurisé
 $router->group('', function(Router $router) use ($app) {
 
+    Flight::route('/debug', function () {
+        echo 'BASE_URL = ' . Flight::get('flight.base_url');
+    });
+    
+
     // Accueil
     $router->get('/accueil', [UserController::class, 'home']);
     $router->get('/logout', [UserController::class, 'logout']);
@@ -46,7 +51,7 @@ $router->group('', function(Router $router) use ($app) {
 
     // Redirection racine
     $router->get('/', function() use ($app) {
-        $app->redirect(BASE_URL .'/accueil');
+        $app->redirect('/accueil');
     });
 
 }, [ SecurityHeadersMiddleware::class ]);
