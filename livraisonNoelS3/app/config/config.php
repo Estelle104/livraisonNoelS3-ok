@@ -1,11 +1,17 @@
 <?php
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 if (!defined('BASE_URL')) {
     define('BASE_URL', rtrim(dirname($_SERVER['SCRIPT_NAME']), '/'));
 }
 
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 /**********************************************
  *      FlightPHP Skeleton Sample Config      *
@@ -54,6 +60,10 @@ $app->path(__DIR__ . $ds . '..' . $ds . '..');
 
 // Core config variables
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+// $app->set('flight.base_url', BASE_URL);
+>>>>>>> Stashed changes
 =======
 // $app->set('flight.base_url', BASE_URL);
 >>>>>>> Stashed changes
@@ -105,15 +115,21 @@ return [
 	'database' => [
 		// MySQL Example:
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 		'host'     => 'localhost',      // Database host (e.g., 'localhost', 'db.example.com')
 		'dbname'   => 'db_S2_ETU004219',   // Database name (e.g., 'flightphp')
 		'user'     => 'ETU004219',  // Database user (e.g., 'root')
 		'password' => '0PtxTqR3',  // Database password (never commit real passwords)
 =======
+=======
+>>>>>>> Stashed changes
 		'host'     => '127.0.0.1',      // Database host (e.g., 'localhost', 'db.example.com')
 		'dbname'   => 'livraisonNoelS3',   // Database name (e.g., 'flightphp')
 		'user'     => 'root',  // Database user (e.g., 'root')
 		'password' => '',  // Database password (never commit real passwords)
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 
 		// SQLite Example:
