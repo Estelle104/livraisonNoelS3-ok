@@ -18,6 +18,11 @@ class BeneficeController {
         if (isset($_GET['jour'])) $filters['jour'] = $_GET['jour'];
         if (isset($_GET['mois'])) $filters['mois'] = $_GET['mois'];
         if (isset($_GET['annee'])) $filters['annee'] = $_GET['annee'];
+        
+        // Nouveaux filtres avec opérateurs
+        if (isset($_GET['jour_op'])) $filters['jour_op'] = $_GET['jour_op'];
+        if (isset($_GET['mois_op'])) $filters['mois_op'] = $_GET['mois_op'];
+        if (isset($_GET['annee_op'])) $filters['annee_op'] = $_GET['annee_op'];
 
         $benefices = $beneficeModel->getAll($filters);
         $totalBenefice = $beneficeModel->getTotalBenefice($filters);
