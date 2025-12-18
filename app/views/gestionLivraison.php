@@ -476,27 +476,27 @@ $user = $_SESSION['user'];
                                     </td>
                                     <td>
                                         <div class="action-buttons">
-                                            <?php if ($livraison['etatlivraison'] == 'EN_ATTENTE'): ?>
-                                                <a href="/app/livraison/<?= $livraison['id'] ?>">
-                                                    <button onclick="updateLivraisonStatus(<?php echo $livraison['id']; ?>, 2)" 
-                                                        class="btn-action btn-livrer" title="Marquer comme livré">
-                                                    ✓ Livrer
-                                                    </button>
-                                                </a>
-                                                <a href="">
-                                                    <button onclick="updateLivraisonStatus(<?php echo $livraison['id']; ?>, 3)" 
-                                                            class="btn-action btn-annuler" title="Annuler la livraison">
-                                                        ✗ Annuler
-                                                    </button>
-                                                </a>
-                                            <?php else: ?>
-                                                <button class="btn-action btn-desactiver" disabled>
+                                        <?php if ($livraison['etatlivraison'] === 'EN_ATTENTE'): ?>
+
+                                            <form method="POST" action="/app/livraison/<?= $livraison['id'] ?>" style="display:inline;">
+                                                <input type="hidden" name="idEtat" value="2">
+                                                <button type="submit" class="btn-action btn-livrer">
                                                     ✓ Livrer
                                                 </button>
-                                                <button class="btn-action btn-desactiver" disabled>
+                                            </form>
+
+                                            <form method="POST" action="/app/livraison/<?= $livraison['id'] ?>" style="display:inline;">
+                                                <input type="hidden" name="idEtat" value="3">
+                                                <button type="submit" class="btn-action btn-annuler">
                                                     ✗ Annuler
                                                 </button>
+                                            </form>
+
+                                            <?php else: ?>
+                                            <button class="btn-action btn-desactiver" disabled>✓ Livrer</button>
+                                            <button class="btn-action btn-desactiver" disabled>✗ Annuler</button>
                                             <?php endif; ?>
+
                                         </div>
                                     </td>
                                 </tr>

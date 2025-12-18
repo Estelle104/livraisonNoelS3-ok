@@ -101,6 +101,27 @@ class LivraisonController {
             echo json_encode(['success' => true]);
         }
     }
+    public function updateEtat($id){
+        if (!isset($_SESSION['logged_in'])) {
+            http_response_code(401);
+            echo "Non autorisé";
+            exit;
+        }
+
+        if (!isset($_POST['idEtat'])) {
+            http_response_code(400);
+            echo "État manquant";
+            exit;
+        }
+
+        $livraisonModel = new Livraison();
+        $livraisonModel->updateEtat($id, $_POST['idEtat']);
+
+        // Retour à la liste
+        header('Location: /app/livraison');
+        exit;
+    }
+
 
     public function delete($id) {
         // session_start();
