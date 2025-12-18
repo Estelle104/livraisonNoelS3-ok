@@ -29,7 +29,7 @@ class MvtTrajetController {
 
         MvtTrajet::save($data);
 
-        Flight::redirect('/mvtTrajet?success=1');
+        Flight::redirect(BASE_URL .'/mvtTrajet?success=1');
     }
 
     // ============ NOUVELLE METHODE POUR LA PAGE 3 ============

@@ -58,7 +58,7 @@ class GestionController {
             
             MvtTrajet::updateVersementMinimum($minVersement, $idPourcentage);
             
-            Flight::redirect('/gestion?success=1');
+            Flight::redirect(BASE_URL .'/gestion?success=1');
         }
     }
 }

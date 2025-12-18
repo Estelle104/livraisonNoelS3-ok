@@ -13,7 +13,7 @@ class LivraisonController {
         // session_start();
         
         if (!isset($_SESSION['logged_in'])) {
-            header('Location: /login');
+            header('Location:' . BASE_URL . '/login');
             exit();
         }
 
@@ -36,7 +36,7 @@ class LivraisonController {
         // session_start();
         
         if (!isset($_SESSION['logged_in'])) {
-            header('Location: /login');
+            header('Location: ' . BASE_URL . '/login');
             exit();
         }
 
@@ -72,7 +72,7 @@ class LivraisonController {
             $livraisonModel = new Livraison();
             $id = $livraisonModel->create($data);
 
-            header('Location: /app/livraison');
+            header('Location: ' . BASE_URL . '/livraison');
             exit;
             // header('Content-Type: application/json');
             // echo json_encode(['success' => true, 'id' => $id]);
@@ -119,7 +119,7 @@ class LivraisonController {
         $livraisonModel->updateEtat($id, $_POST['idEtat']);
 
         // Retour à la liste
-        header('Location: /app/livraison');
+        header('Location: ' . BASE_URL . '/livraison');
         exit;
     }
 

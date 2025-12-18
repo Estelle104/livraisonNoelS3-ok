@@ -23,28 +23,28 @@ $router->post('/login', [UserController::class, 'login']);
 $router->group('', function(Router $router) use ($app) {
 
     // Accueil
-    $router->get('/app/accueil', [UserController::class, 'home']);
+    $router->get('/accueil', [UserController::class, 'home']);
     $router->get('/logout', [UserController::class, 'logout']);
 
     // Gestion livraison
-    $router->get('/app/livraison', [LivraisonController::class, 'index']);
-    $router->get('/app/livraison/@id:[0-9]+', [LivraisonController::class, 'show']);
-    $router->post('/app/livraison', [LivraisonController::class, 'store']);
-    // $router->put('/app/livraison/@id:[0-9]+', [LivraisonController::class, 'update']);
-    $router->post('/app/livraison/@id:[0-9]+', [LivraisonController::class, 'updateEtat']);
-    // $router->delete('/app/livraison/@id:[0-9]+', [LivraisonController::class, 'delete']);
+    $router->get('/livraison', [LivraisonController::class, 'index']);
+    $router->get('/livraison/@id:[0-9]+', [LivraisonController::class, 'show']);
+    $router->post('/livraison', [LivraisonController::class, 'store']);
+    // $router->put('/livraison/@id:[0-9]+', [LivraisonController::class, 'update']);
+    $router->post('/livraison/@id:[0-9]+', [LivraisonController::class, 'updateEtat']);
+    // $router->delete('/livraison/@id:[0-9]+', [LivraisonController::class, 'delete']);
 
     // Bénéfices
-    $router->get('/app/benefice', [BeneficeController::class, 'index']);
-    $router->get('/app/benefice/details', [BeneficeController::class, 'details']);
+    $router->get('/benefice', [BeneficeController::class, 'index']);
+    $router->get('/benefice/details', [BeneficeController::class, 'details']);
 
     // Colis
-    $router->post('/app/colis', [ColisController::class, 'store']);
+    $router->post('/colis', [ColisController::class, 'store']);
 
 
     // Redirection racine
     $router->get('/', function() use ($app) {
-        $app->redirect('/app/accueil');
+        $app->redirect(BASE_URL .'/accueil');
     });
 
 }, [ SecurityHeadersMiddleware::class ]);
