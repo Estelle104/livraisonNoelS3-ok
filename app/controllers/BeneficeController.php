@@ -8,8 +8,8 @@ class BeneficeController {
         // session_start();
         
         if (!isset($_SESSION['logged_in'])) {
-            header('Location: /login');
-            exit();
+            header('Location: ' . BASE_URL . '/login');
+            exit(); 
         }
 
         $beneficeModel = new Benefice();
