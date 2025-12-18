@@ -281,8 +281,8 @@ $annee_op = $_GET['annee_op'] ?? '=';
         </div>
         
         <div class="nav-buttons">
-            <a href="/app/accueil" class="nav-btn">🏠 Accueil</a>
-            <a href="/app/livraison" class="nav-btn">🚚 Livraisons</a>
+            <a href="<?= BASE_URL ?>/accueil" class="nav-btn">🏠 Accueil</a>
+            <a href="<?= BASE_URL ?>/livraison" class="nav-btn">🚚 Livraisons</a>
             <a href="/logout" class="nav-btn">🔒 Déconnexion</a>
         </div>
     </header>
@@ -292,7 +292,7 @@ $annee_op = $_GET['annee_op'] ?? '=';
         <section class="section">
             <h2 class="section-title">📊 Filtres et Total</h2>
             
-            <form method="GET" action="/app/benefice">
+            <form method="GET" action="<?= BASE_URL ?>/benefice">
                 <div class="filter-container">
                     <div class="filter-group">
                         <label>Jour</label>
@@ -353,7 +353,7 @@ $annee_op = $_GET['annee_op'] ?? '=';
                 <button type="submit" class="btn-primary">
                     🔍 Appliquer les filtres
                 </button>
-                <a href="/app/benefice" class="btn-secondary">
+                <a href="<?= BASE_URL ?>/benefice" class="btn-secondary">
                     🔄 Réinitialiser
                 </a>
             </form>
