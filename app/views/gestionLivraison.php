@@ -352,6 +352,7 @@ $user = $_SESSION['user'];
                         </select>
                         <a href="/app/livraison?colis=1" style="background:#17a2b8; color:white; padding:20px 20px; border-radius:6px; text-decoration:none;">
                             +
+                        </a>
                     </div>
                 </div>
                 

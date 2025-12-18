@@ -32,7 +32,7 @@ $router->group('', function(Router $router) use ($app) {
     $router->post('/app/livraison', [LivraisonController::class, 'store']);
     // $router->put('/app/livraison/@id:[0-9]+', [LivraisonController::class, 'update']);
     $router->post('/app/livraison/@id:[0-9]+', [LivraisonController::class, 'updateEtat']);
-    $router->delete('/app/livraison/@id:[0-9]+', [LivraisonController::class, 'delete']);
+    // $router->delete('/app/livraison/@id:[0-9]+', [LivraisonController::class, 'delete']);
 
     // Bénéfices
     $router->get('/app/benefice', [BeneficeController::class, 'index']);
