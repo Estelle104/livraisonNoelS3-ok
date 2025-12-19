@@ -50,7 +50,7 @@ $router->group('', function(Router $router) use ($app) {
     $router->post('/colis', [ColisController::class, 'store']);
 
     // zoneLLivrasion
-    $router->get('/zones', [ZoneLivraisonController::class, 'index']);
+    $router->post('/zones', [ZoneLivraisonController::class, 'index']);
     $router->get('/zones/create', [ZoneLivraisonController::class, 'create']);
     $router->post('/zones/store', [ZoneLivraisonController::class, 'store']);
     $router->get('/zones/edit/@id', [ZoneLivraisonController::class, 'edit']);

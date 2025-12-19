@@ -4,7 +4,6 @@ use app\controllers\UserController;
 use app\controllers\LivraisonController;
 use app\controllers\BeneficeController;
 use app\controllers\ColisController;
-use app\controllers\ZoneLivraisonController;
 use app\middlewares\SecurityHeadersMiddleware;
 use flight\net\Router;
 use flight\Engine;
@@ -49,13 +48,6 @@ $router->group('', function(Router $router) use ($app) {
     // Colis
     $router->post('/colis', [ColisController::class, 'store']);
 
-    // zoneLLivrasion
-    $router->get('/zones', [ZoneLivraisonController::class, 'index']);
-    $router->get('/zones/create', [ZoneLivraisonController::class, 'create']);
-    $router->post('/zones/store', [ZoneLivraisonController::class, 'store']);
-    $router->get('/zones/edit/@id', [ZoneLivraisonController::class, 'edit']);
-    $router->post('/zones/update/@id', [ZoneLivraisonController::class, 'update']);
-    $router->get('/zones/delete/@id', [ZoneLivraisonController::class, 'delete']);
 
     // Redirection racine
     $router->get('/', function() use ($app) {

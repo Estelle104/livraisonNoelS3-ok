@@ -52,6 +52,15 @@ $user = $_SESSION['user'];
                     </p>
                 </a>
                 
+                <a href="<?= BASE_URL ?>/zones" class="dashboard-card livraison-card">
+                    <div class="card-icon">🗺️</div>
+                    <h3 class="card-title">Gestion des zones de Livraisons</h3>
+                    <p class="card-description">
+                        Créez de nouvelles  zones de livraisons.
+                    </p>
+                </a>
+                
+
                 <div class="dashboard-card stats-card">
                     <div class="card-icon">📊</div>
                     <h3 class="card-title">Statistiques</h3>
@@ -59,6 +68,7 @@ $user = $_SESSION['user'];
                         Visualisez les statistiques de livraison, performances et indicateurs clés.
                     </p>
                 </div>
+
             </div>
         </section>
     </main>

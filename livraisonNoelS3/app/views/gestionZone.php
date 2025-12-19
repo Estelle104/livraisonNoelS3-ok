@@ -90,15 +90,11 @@ if (!isset($_SESSION['logged_in'])) {
                     <div style="font-size: 14px; color: #718096;">
                         <strong><?= count($zones) ?></strong> zone(s) enregistrée(s)
                     </div>
-                    <button class="export-btn">
-                        📤 Exporter
-                    </button>
                 </div>
             </div>
             <?php endif; ?>
         </section>
-        
-        <!-- SECTION FORMULAIRE -->
+        <!-- ajout -->
         <section class="section zones-section">
             <h2 class="section-title"><span style="color: #3498db;">➕</span> Nouvelle zone</h2>
             
@@ -119,7 +115,6 @@ if (!isset($_SESSION['logged_in'])) {
                     <span style="margin-right: 8px;">💾</span> Enregistrer la zone
                 </button>
             </form>
-            
         </section>
     </div>
 </main>

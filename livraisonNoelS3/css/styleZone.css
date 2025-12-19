@@ -1,0 +1,453 @@
+/* ===== PAGE DE GESTION DES ZONES ===== */
+
+/* Style spécifique pour les tables de zones */
+.zones-container {
+    display: flex;
+    gap: 40px;
+    padding: 20px;
+}
+
+@media (max-width: 1200px) {
+    .zones-container {
+        flex-direction: column;
+        gap: 30px;
+    }
+}
+
+/* En-tête spécifique pour zones */
+.header .logo h1[class*="zones"],
+.header .logo h1:contains("zones"),
+.header .logo h1:contains("Zones") {
+    color: #ffffff;
+}
+
+/* Cartes spécifiques pour zones */
+.zones-section {
+    background: var(--snow);
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(44, 62, 80, 0.08);
+    padding: 30px;
+    border: 1px solid var(--cloud);
+    transition: all 0.3s ease;
+}
+
+.zones-section:hover {
+    box-shadow: 0 6px 20px rgba(44, 62, 80, 0.12);
+}
+
+.zones-table-container {
+    overflow-x: auto;
+    border-radius: 8px;
+    border: 1px solid var(--cloud);
+    box-shadow: 0 2px 8px rgba(44, 62, 80, 0.05);
+    margin-top: 20px;
+}
+
+.zones-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: var(--snow);
+}
+
+.zones-table th {
+    background: var(--clouded-pearl);
+    color: var(--midnight-mist);
+    font-weight: 600;
+    padding: 16px;
+    text-align: left;
+    border-bottom: 2px solid var(--silver-light);
+    font-size: 14px;
+    letter-spacing: 0.3px;
+    white-space: nowrap;
+}
+
+.zones-table th:first-child {
+    border-top-left-radius: 8px;
+}
+
+.zones-table th:last-child {
+    border-top-right-radius: 8px;
+}
+
+.zones-table td {
+    padding: 16px;
+    border-bottom: 1px solid var(--clouded-dark);
+    vertical-align: middle;
+    color: var(--midnight-light);
+    font-size: 14px;
+}
+
+.zones-table tr:hover {
+    background: var(--clouded-light);
+}
+
+.zones-table tr:last-child td {
+    border-bottom: none;
+}
+
+/* Boutons spécifiques pour zones */
+.btn-zones {
+    background: linear-gradient(135deg, var(--accent-primary) 0%, #2980b9 100%);
+    color: var(--pure-snow);
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.btn-zones:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
+    text-decoration: none;
+    color: var(--pure-snow);
+}
+
+.btn-modifier-zones {
+    background: linear-gradient(135deg, var(--accent-success) 0%, #229954 100%);
+}
+
+.btn-modifier-zones:hover {
+    box-shadow: 0 4px 12px rgba(39, 174, 96, 0.3);
+}
+
+.btn-supprimer-zones {
+    background: linear-gradient(135deg, var(--accent-danger) 0%, #c0392b 100%);
+}
+
+.btn-supprimer-zones:hover {
+    box-shadow: 0 4px 12px rgba(231, 76, 60, 0.3);
+}
+
+/* Badges pour pourcentages */
+.percentage-badge {
+    display: inline-block;
+    padding: 4px 10px;
+    background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+    color: var(--accent-success);
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    border: 1px solid #c8e6c9;
+}
+
+.percentage-badge.high {
+    background: linear-gradient(135deg, #e8f5e9 0%, #a5d6a7 100%);
+    color: #2e7d32;
+}
+
+.percentage-badge.medium {
+    background: linear-gradient(135deg, #fff8e1 0%, #ffecb3 100%);
+    color: var(--accent-warning);
+}
+
+.percentage-badge.low {
+    background: linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%);
+    color: var(--accent-danger);
+}
+
+/* Formulaires spécifiques pour zones */
+.zones-form {
+    display: grid;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.zones-form .form-group {
+    margin-bottom: 0;
+}
+
+.zones-form input[type="text"],
+.zones-form input[type="number"] {
+    width: 100%;
+    padding: 14px 16px;
+    border: 2px solid var(--clouded-dark);
+    border-radius: 8px;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    background: var(--pure-snow);
+    color: var(--midnight-mist);
+    font-family: inherit;
+}
+
+.zones-form input:focus {
+    outline: none;
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+}
+
+/* Section édition */
+.edit-zone-container {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.edit-zone-form {
+    background: var(--pure-snow);
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(44, 62, 80, 0.08);
+    padding: 30px;
+    border: 1px solid var(--clouded-pearl);
+}
+
+/* Messages spécifiques */
+.zones-message {
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-weight: 500;
+    animation: fadeIn 0.5s ease;
+}
+
+.zones-message.success {
+    background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+    color: var(--accent-success);
+    border: 1px solid #c8e6c9;
+}
+
+.zones-message.error {
+    background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%);
+    color: var(--accent-danger);
+    border: 1px solid #ffcdd2;
+}
+
+.zones-message.warning {
+    background: linear-gradient(135deg, #fff8e1 0%, #ffecb3 100%);
+    color: var(--accent-warning);
+    border: 1px solid #ffecb3;
+}
+
+/* En-tête de page zones */
+.zones-header {
+    background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+    color: var(--pure-snow);
+    padding: 25px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 20px rgba(52, 152, 219, 0.2);
+}
+
+/* Section vide */
+.empty-zones {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--silver-slate);
+}
+
+.empty-zones-icon {
+    font-size: 64px;
+    margin-bottom: 20px;
+    opacity: 0.5;
+}
+
+.empty-zones-title {
+    font-size: 20px;
+    color: var(--silver-dark);
+    margin-bottom: 10px;
+}
+
+.empty-zones-message {
+    color: var(--silver-light);
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+/* Responsive design pour zones */
+@media (max-width: 768px) {
+    .zones-container {
+        padding: 15px;
+        gap: 20px;
+    }
+    
+    .zones-section {
+        padding: 20px;
+    }
+    
+    .zones-table th,
+    .zones-table td {
+        padding: 12px 10px;
+        font-size: 13px;
+    }
+    
+    .edit-zone-container {
+        margin: 20px auto;
+    }
+    
+    .edit-zone-form {
+        padding: 20px;
+    }
+    
+    .btn-zones {
+        padding: 6px 12px;
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 576px) {
+    .zones-container {
+        flex-direction: column;
+    }
+    
+    .zones-table {
+        font-size: 13px;
+    }
+    
+    .zones-table th,
+    .zones-table td {
+        padding: 10px 8px;
+    }
+    
+    .percentage-badge {
+        font-size: 11px;
+        padding: 3px 8px;
+    }
+}
+
+/* Animations */
+@keyframes fadeInZones {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.zones-section {
+    animation: fadeInZones 0.5s ease forwards;
+}
+
+/* Statistiques zones */
+.zones-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-top: 30px;
+    padding: 20px;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-radius: 12px;
+    border: 1px solid var(--clouded-pearl);
+}
+
+.stat-card {
+    background: var(--pure-snow);
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    border-left: 4px solid var(--accent-primary);
+    box-shadow: 0 2px 8px rgba(44, 62, 80, 0.05);
+}
+
+.stat-value {
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--midnight-mist);
+    margin: 10px 0;
+}
+
+.stat-label {
+    font-size: 14px;
+    color: var(--silver-slate);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Pagination pour zones */
+.zones-pagination {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid var(--clouded-pearl);
+}
+
+.page-link {
+    padding: 8px 15px;
+    background: var(--clouded-pearl);
+    color: var(--midnight-mist);
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.page-link:hover {
+    background: var(--accent-primary);
+    color: var(--pure-snow);
+    transform: translateY(-2px);
+}
+
+.page-link.active {
+    background: var(--accent-primary);
+    color: var(--pure-snow);
+    box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
+}
+
+/* Options avancées */
+.zones-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    padding: 15px;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-radius: 8px;
+    border: 1px solid var(--clouded-pearl);
+}
+
+.search-box {
+    position: relative;
+    flex: 1;
+    max-width: 300px;
+}
+
+.search-input {
+    width: 100%;
+    padding: 12px 16px 12px 45px;
+    border: 2px solid var(--clouded-dark);
+    border-radius: 8px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    background: var(--pure-snow);
+    color: var(--midnight-mist);
+}
+
+.search-icon {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--silver-slate);
+}
+
+/* Exporter les données */
+.export-btn {
+    background: linear-gradient(135deg, var(--accent-success) 0%, #229954 100%);
+    color: var(--pure-snow);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+}
+
+.export-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(39, 174, 96, 0.3);
+}
