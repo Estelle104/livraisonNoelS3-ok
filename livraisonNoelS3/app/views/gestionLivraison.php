@@ -172,7 +172,7 @@ $user = $_SESSION['user'];
                                     </td>
                                     <td>
                                         <div class="action-buttons">
-                                        <?php if ($livraison['etatlivraison'] === 'EN_ATTENTE'): ?>
+                                        <?php if ($livraison['etatlivraison'] === 'EN_ATTENTE'){ ?>
 
                                             <form method="POST" action="<?= BASE_URL ?>/livraison/<?= $livraison['id'] ?>" style="display:inline;">
                                                 <input type="hidden" name="idEtat" value="2">
@@ -188,10 +188,10 @@ $user = $_SESSION['user'];
                                                 </button>
                                             </form>
 
-                                            <?php else: ?>
+                                            <?php }else{ ?>
                                             <button class="btn-action btn-desactiver" disabled>✓ Livrer</button>
                                             <button class="btn-action btn-desactiver" disabled>✗ Annuler</button>
-                                            <?php endif; ?>
+                                            <?php } ?>
 
                                         </div>
                                     </td>
@@ -239,137 +239,5 @@ $user = $_SESSION['user'];
     </div>
     <?php endif; ?>
 
-    <script>
-        // Gestion du formulaire de livraison
-        // document.getElementById('livraisonForm').addEventListener('submit', function(e) {
-        //     e.preventDefault();
-            
-        //     const formData = new FormData(this);
-            
-        //     fetch('<?= BASE_URL ?>/livraison', {
-        //         method: 'POST',
-        //         body: formData
-        //     })
-        //     .then(response => response.json())
-        //     .then(data => {
-        //         if (data.success) {
-        //             showMessage('Livraison créée avec succès!', 'success');
-        //             this.reset();
-        //             refreshLivraisons();
-        //         } else {
-        //             showMessage('Erreur lors de la création', 'error');
-        //         }
-        //     })
-        //     .catch(error => {
-        //         console.error('Error:', error);
-        //         showMessage('Erreur de connexion', 'error');
-        //     });
-        // });
-        
-        // Gestion du formulaire de colis
-        // document.getElementById('colisForm').addEventListener('submit', function(e) {
-        //     e.preventDefault();
-            
-        //     const colisData = {
-        //         descriptionColi: document.getElementById('newDescription').value,
-        //         poidsColis: document.getElementById('newPoids').value,
-        //         prixUnitaire: document.getElementById('newPrix').value
-        //     };
-            
-        //     fetch('<?= BASE_URL ?>/colis', {
-        //         method: 'POST',
-        //         headers: {
-        //             'Content-Type': 'application/x-www-form-urlencoded',
-        //         },
-        //         body: new URLSearchParams(colisData)
-        //     })
-        //     .then(response => response.json())
-        //     .then(data => {
-        //         if (data.success) {
-        //             // Ajouter le nouveau colis à la liste déroulante
-        //             const select = document.getElementById('idColis');
-        //             const newOption = document.createElement('option');
-        //             newOption.value = data.id;
-        //             newOption.textContent = `${colisData.descriptionColi} - ${colisData.poidsColis}kg`;
-        //             select.appendChild(newOption);
-        //             select.value = data.id;
-                    
-        //             closeColisModal();
-        //             showMessage('Colis créé avec succès!', 'success');
-        //         } else {
-        //             showMessage('Erreur lors de la création du colis', 'error');
-        //         }
-        //     });
-        // });
-        
-        // Mettre à jour le statut d'une livraison
-        function updateLivraisonStatus(livraisonId, newStatusId) {
-            if (!confirm('Confirmer la modification du statut?')) return;
-            
-            const data = new URLSearchParams();
-            data.append('idEtat', newStatusId);
-            
-            fetch(`<?= BASE_URL ?>/livraison/${livraisonId}`, {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                },
-                body: data
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    showMessage('Statut mis à jour avec succès!', 'success');
-                    refreshLivraisons();
-                } else {
-                    showMessage('Erreur lors de la mise à jour', 'error');
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                showMessage('Erreur de connexion', 'error');
-            });
-        }
-        
-        // Rafraîchir la liste des livraisons
-        function refreshLivraisons() {
-            fetch('<?= BASE_URL ?>/livraison')
-            .then(response => response.text())
-            .then(html => {
-                // Cette fonction nécessiterait une API dédiée pour la liste seule
-                // Pour l'instant, on recharge la page
-                location.reload();
-            });
-        }
-        
-        // Gestion du modal colis
-        function openColisModal() {
-            document.getElementById('colisModal').style.display = 'flex';
-        }
-        
-        function closeColisModal() {
-            document.getElementById('colisModal').style.display = 'none';
-            document.getElementById('colisForm').reset();
-        }
-        
-        // Afficher les messages
-        function showMessage(text, type) {
-            const messageDiv = document.getElementById('message');
-            messageDiv.textContent = text;
-            messageDiv.className = `message ${type}`;
-            
-            setTimeout(() => {
-                messageDiv.style.display = 'none';
-            }, 5000);
-        }
-        
-        // Fermer le modal en cliquant à l'extérieur
-        window.onclick = function(event) {
-            const modal = document.getElementById('colisModal');
-            if (event.target == modal) {
-                closeColisModal();
-            }
-        }
-    </script>
 </body>
 </html>
