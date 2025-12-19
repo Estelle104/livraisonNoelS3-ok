@@ -55,6 +55,11 @@ define(
     'BASE_URL',
     '/S3/mrRojo/ProjetBinome/livraisonNoelS3-oui/livraisonNoelS3'
 );
+// define(
+//     'BASE_URL',
+//     '/ETU004185/livraisonNoelS3'
+// );
+
 // $app = Flight::app();
 
 // $app->set('flight.base_url', '/');
