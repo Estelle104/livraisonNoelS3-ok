@@ -36,7 +36,6 @@ $annee_op = $_GET['annee_op'] ?? '=';
             <a href="<?= BASE_URL ?>/accueil" class="nav-btn">🏠 Accueil</a>
             <a href="<?= BASE_URL ?>/livraison" class="nav-btn">🚚 Livraisons</a>
             <a href="<?= BASE_URL ?>/logout" class="nav-btn">🔒 Déconnexion</a>
-            <a href="ok"></a>
         </div>
     </header>
     
