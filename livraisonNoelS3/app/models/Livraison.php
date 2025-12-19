@@ -7,6 +7,7 @@ class Livraison extends Model {
     protected $table = 'livraison_Livraison';
 
     public function getAll() {
+        // $sql = "SELECT * FROM livraison_v_HistoriqueBenefice ORDER BY dateLivraison DESC";
         $sql = "SELECT l.*, 
                        c.descriptionColi, 
                        v.nomVehicule, 
@@ -20,7 +21,6 @@ class Livraison extends Model {
                 LEFT JOIN livraison_Entrepot e ON l.idEntrepot = e.id
                 LEFT JOIN livraison_EtatLivraison et ON l.idEtat = et.id
                 ORDER BY l.dateLivraison DESC";
-        // $sql = "SELECT * FROM livraison_v_HistoriqueBenefice ORDER BY dateLivraison DESC";
         $stmt = $this->execute($sql);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -35,7 +35,7 @@ class Livraison extends Model {
             $data['idEntrepot'],
             $data['destination'],
             $data['idVehicule'],
-            $data['idEtat'] ?? 1, // EN_ATTENTE par défaut
+            $data['idEtat'] ?? 1, // EN_ATTENTE par defaut
             $data['idChauffeur'],
             $data['dateLivraison'],
             $data['coutVoiture'],

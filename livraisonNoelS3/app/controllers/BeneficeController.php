@@ -19,7 +19,7 @@ class BeneficeController {
         if (isset($_GET['mois'])) $filters['mois'] = $_GET['mois'];
         if (isset($_GET['annee'])) $filters['annee'] = $_GET['annee'];
         
-        // Nouveaux filtres avec opérateurs
+        // filtres avec operateur
         if (isset($_GET['jour_op'])) $filters['jour_op'] = $_GET['jour_op'];
         if (isset($_GET['mois_op'])) $filters['mois_op'] = $_GET['mois_op'];
         if (isset($_GET['annee_op'])) $filters['annee_op'] = $_GET['annee_op'];
@@ -31,7 +31,6 @@ class BeneficeController {
     }
 
     public function details() {
-        // session_start();
         
         if (!isset($_SESSION['logged_in'])) {
             http_response_code(401);

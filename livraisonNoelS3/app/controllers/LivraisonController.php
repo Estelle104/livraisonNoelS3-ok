@@ -74,9 +74,6 @@ class LivraisonController {
 
             header('Location: ' . BASE_URL . '/livraison');
             exit;
-            // header('Content-Type: application/json');
-            // echo json_encode(['success' => true, 'id' => $id]);
-            // echo "Votre livraison a bien ete enregistrer";
         }
     }
 
@@ -118,7 +115,7 @@ class LivraisonController {
         $livraisonModel = new Livraison();
         $livraisonModel->updateEtat($id, $_POST['idEtat']);
 
-        // Retour à la liste
+        // Retour a liste livraison
         header('Location: ' . BASE_URL . '/livraison');
         exit;
     }
@@ -133,7 +130,6 @@ class LivraisonController {
             exit();
         }
 
-        // Implémenter la suppression si nécessaire
         header('Content-Type: application/json');
         echo json_encode(['success' => true]);
     }

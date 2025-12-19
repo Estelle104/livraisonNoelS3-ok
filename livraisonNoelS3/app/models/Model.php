@@ -11,7 +11,7 @@ abstract class Model {
 
     public function __construct() {
         if (self::$pdo === null) {
-            // Récupère la DB depuis Flight (services.php)
+            // recupere DB depuis Flight (services.php)
             self::$pdo = Flight::db();
         }
     }

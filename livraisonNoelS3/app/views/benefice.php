@@ -6,7 +6,6 @@ if (!isset($_SESSION['logged_in'])) {
 
 $user = $_SESSION['user'];
 
-// Récupérer les filtres depuis l'URL
 $jour = $_GET['jour'] ?? '';
 $mois = $_GET['mois'] ?? '';
 $annee = $_GET['annee'] ?? date('Y');
@@ -14,33 +13,31 @@ $jour_op = $_GET['jour_op'] ?? '=';
 $mois_op = $_GET['mois_op'] ?? '=';
 $annee_op = $_GET['annee_op'] ?? '=';
 
-// Les données sont déjà passées par le contrôleur
-// $benefices et $totalBenefice sont définies dans BeneficeController::index()
 ?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bénéfices - Livraison Noël</title>
+    <title>Benefices - Livraison Noël</title>
     <link rel="stylesheet" href="<?= BASE_URL ?>/public/css/style.css">
 
 </head>
 <body>
     <header class="header">
         <div class="logo">
-            <h1>💰 Analyse des Bénéfices</h1>
+            <h1>💰 Analyse des Benefices</h1>
         </div>
         
         <div class="nav-buttons">
             <a href="<?= BASE_URL ?>/accueil" class="nav-btn">🏠 Accueil</a>
             <a href="<?= BASE_URL ?>/livraison" class="nav-btn">🚚 Livraisons</a>
-            <a href="<?= BASE_URL ?>/logout" class="nav-btn">🔒 Déconnexion</a>
+            <a href="<?= BASE_URL ?>/logout" class="nav-btn">🔒 Deconnexion</a>
         </div>
     </header>
     
     <main class="main-container">
-        <!-- Section gauche : Filtres et montant total -->
+        <!-- gauche : Filtres et montant total -->
         <section class="section">
             <h2 class="section-title">📊 Filtres et Total</h2>
             
@@ -70,7 +67,7 @@ $annee_op = $_GET['annee_op'] ?? '=';
                             <select name="mois" style="flex: 2;">
                                 <option value="">Tous les mois</option>
                                 <option value="1" <?php echo $mois == '1' ? 'selected' : ''; ?>>Janvier</option>
-                                <option value="2" <?php echo $mois == '2' ? 'selected' : ''; ?>>Février</option>
+                                <option value="2" <?php echo $mois == '2' ? 'selected' : ''; ?>>Fevrier</option>
                                 <option value="3" <?php echo $mois == '3' ? 'selected' : ''; ?>>Mars</option>
                                 <option value="4" <?php echo $mois == '4' ? 'selected' : ''; ?>>Avril</option>
                                 <option value="5" <?php echo $mois == '5' ? 'selected' : ''; ?>>Mai</option>
@@ -80,13 +77,13 @@ $annee_op = $_GET['annee_op'] ?? '=';
                                 <option value="9" <?php echo $mois == '9' ? 'selected' : ''; ?>>Septembre</option>
                                 <option value="10" <?php echo $mois == '10' ? 'selected' : ''; ?>>Octobre</option>
                                 <option value="11" <?php echo $mois == '11' ? 'selected' : ''; ?>>Novembre</option>
-                                <option value="12" <?php echo $mois == '12' ? 'selected' : ''; ?>>Décembre</option>
+                                <option value="12" <?php echo $mois == '12' ? 'selected' : ''; ?>>Decembre</option>
                             </select>
                         </div>
                     </div>
                     
                     <div class="filter-group">
-                        <label>Année</label>
+                        <label>Annee</label>
                         <div class="filter-row">
                             <select name="annee_op">
                                 <option value="=" <?php echo $annee_op == '=' ? 'selected' : ''; ?>>=</option>
@@ -106,29 +103,23 @@ $annee_op = $_GET['annee_op'] ?? '=';
                     🔍 Appliquer les filtres
                 </button>
                 <a href="<?= BASE_URL ?>/benefice" class="btn-secondary">
-                    🔄 Réinitialiser
+                    🔄 Reinitialiser
                 </a>
             </form>
             
             <div class="stats-card">
-                <div class="stats-label">BÉNÉFICE TOTAL</div>
+                <div class="stats-label">BENEFICE TOTAL</div>
                 <div class="stats-value" id="totalBenefice">
                     <?php echo number_format($totalBenefice ?? 0, 2, ',', ' '); ?> Ar
                 </div>
-                <div>pour la période sélectionnée</div>
+                <div>pour la periode selectionnee</div>
             </div>
             
-            <!-- Remarque : Sans JavaScript, le graphique ne peut pas être affiché -->
-            <div class="chart-container">
-                <p style="text-align: center; padding: 50px; color: #666;">
-                    📊 Le graphique nécessite JavaScript pour fonctionner
-                </p>
-            </div>
         </section>
         
-        <!-- Section droite : Liste détaillée -->
+        <!--  droite : Liste detaillee -->
         <section class="section">
-            <h2 class="section-title">📈 Détails des Bénéfices</h2>
+            <h2 class="section-title">📈 Details des Benefices</h2>
             
             <div class="table-container">
                 <table id="beneficeTable">
@@ -137,7 +128,7 @@ $annee_op = $_GET['annee_op'] ?? '=';
                             <th>Date</th>
                             <th>Chiffre d'Affaire</th>
                             <th>Coût Revient</th>
-                            <th>Bénéfice</th>
+                            <th>Benefice</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -145,7 +136,7 @@ $annee_op = $_GET['annee_op'] ?? '=';
                         <?php if (empty($benefices)): ?>
                             <tr>
                                 <td colspan="5" class="no-data">
-                                    Aucune donnée de bénéfice disponible
+                                    Aucune donnee de benefice disponible
                                 </td>
                             </tr>
                         <?php else: ?>
@@ -180,15 +171,15 @@ $annee_op = $_GET['annee_op'] ?? '=';
             </div>
             
             <div style="margin-top: 30px; padding: 20px; background: #f8f9fa; border-radius: 10px;">
-                <h3 style="margin-bottom: 15px; color: #333;">📋 Légende</h3>
+                <h3 style="margin-bottom: 15px; color: #333;">📋 Legende</h3>
                 <div style="display: flex; gap: 20px;">
                     <div>
                         <span style="display: inline-block; width: 20px; height: 20px; background: #28a745; border-radius: 4px;"></span>
-                        <span style="margin-left: 10px;">Bénéfice positif</span>
+                        <span style="margin-left: 10px;">Benefice positif</span>
                     </div>
                     <div>
                         <span style="display: inline-block; width: 20px; height: 20px; background: #dc3545; border-radius: 4px;"></span>
-                        <span style="margin-left: 10px;">Bénéfice négatif</span>
+                        <span style="margin-left: 10px;">Benefice negatif</span>
                     </div>
                 </div>
             </div>

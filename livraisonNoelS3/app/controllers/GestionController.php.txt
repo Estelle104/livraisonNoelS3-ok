@@ -32,21 +32,19 @@ class GestionController {
         Flight::render('gestion', $data);
     }
 
-    /**
-     * Page de vérification des salaires historiques
-     */
-    public static function verificationSalaire() {
-        $dateDebut = $_GET['dateDebut'] ?? date('Y-m-01');
-        $dateFin = $_GET['dateFin'] ?? date('Y-m-d');
+    
+    // public static function verificationSalaire() {
+    //     $dateDebut = $_GET['dateDebut'] ?? date('Y-m-01');
+    //     $dateFin = $_GET['dateFin'] ?? date('Y-m-d');
         
-        $data = [
-            'salaireHistorique' => MvtTrajet::verifierSalaireHistorique($dateDebut, $dateFin),
-            'dateDebut' => $dateDebut,
-            'dateFin' => $dateFin
-        ];
+    //     $data = [
+    //         'salaireHistorique' => MvtTrajet::verifierSalaireHistorique($dateDebut, $dateFin),
+    //         'dateDebut' => $dateDebut,
+    //         'dateFin' => $dateFin
+    //     ];
         
-        Flight::render('verification_salaire', $data);
-    }
+    //     Flight::render('verification_salaire', $data);
+    // }
 
     /**
      * Mettre à jour le versement minimum

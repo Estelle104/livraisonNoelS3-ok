@@ -29,7 +29,7 @@ $user = $_SESSION['user'];
     </header>
     
     <main class="main-container">
-        <!-- Section gauche : Formulaire d'insertion (Estelle) -->
+        <!--  gauche : Formulaire d'insertion (Estelle) -->
         <section class="section">
             <h2 class="section-title">➕ Nouvelle Livraison</h2>
             
@@ -122,7 +122,7 @@ $user = $_SESSION['user'];
             </form>
         </section>
         
-        <!-- Section droite : Liste des livraisons (Andry) -->
+        <!--  droite : Liste des livraisons (Andry) -->
         <section class="section">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px;">
                 <h2 class="section-title">📋 Liste des Livraisons</h2>

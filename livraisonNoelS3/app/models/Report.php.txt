@@ -3,16 +3,13 @@ namespace app\models;
 
 use Flight;
 
-/**
- * Rapports journaliers / par véhicule / chauffeur
- */
+
+// Rapports journaliers / par vehicule / chauffeur
+
 class Report {
 
-    /**
-     * Liste par jour / véhicule / chauffeur
-     * Retourne lignes : date, idVehicule, nomVehicule, idChauffeur, nomChauffeur,
-     * sum_km, sum_recette, sum_carburant, benefice
-     */
+    //  Liste par jour / vehicule / chauffeur
+     
     public static function getv_listParJourVehiculesEtChauffeur() {
         $sql = "
             SELECT
@@ -35,10 +32,9 @@ class Report {
         return Flight::db()->query($sql)->fetchAll();
     }
 
-    /**
-     * Bénéfice par jour (totaux globaux par jour)
-     * Retourne : jour, sum_kilometreEffectue, sum_recette, sum_carburant, beneficeParJour
-     */
+     
+    // benefice par jour (totaux globaux par jour)
+    // Retourne : jour, sum_kilometreEffectue, sum_recette, sum_carburant, beneficeParJour 
     public static function getv_listParJourVehiculesEtChauffeurBenefice() {
         $sql = "
             SELECT
@@ -55,10 +51,8 @@ class Report {
         return Flight::db()->query($sql)->fetchAll();
     }
 
-    /**
-     * Bénéfice par véhicule (totaux globaux par véhicule sur toute la période)
-     * Retourne : idVehicule, nomVehicule, sum_kilometreEffectue, sum_recette, sum_carburant, beneficeParVehicule
-     */
+    // Benefice par vehicule (totaux globaux par vehicule sur toute la periode)
+    // Retourne : idVehicule, nomVehicule, sum_kilometreEffectue, sum_recette, sum_carburant, beneficeParVehicule
     public static function getv_listParJourVehiculesEtChauffeurParVehicule() {
         $sql = "
             SELECT
@@ -77,14 +71,10 @@ class Report {
         return Flight::db()->query($sql)->fetchAll();
     }
 
-    /**
-     * Trajets les plus rentables par jour
-     * On calcule pour chaque jour le trajet (idTrajet) qui donne le plus grand benefice (recette - carburant)
-     *
-     * Note: la requête utilise une sous-requête pour compatibilité MySQL ancienne.
-     */
+    
+    // Trajets les plus rentables par jour
+    // On calcule pour chaque jour le trajet (idTrajet) qui donne le plus grand benefice (recette - carburant)
     public static function getTopTrajetsParJour($limitPerDay = 1) {
-        // Sous-requête : pour chaque jour et trajet, calculer profit total
         $sql = "
             SELECT
                 jour, idTrajet, pointDepart, pointArrive,
@@ -102,7 +92,7 @@ class Report {
                 JOIN tbTrajets t ON t.id = m.idTrajet
                 GROUP BY DATE(m.dateDebut), m.idTrajet
             ) AS daily_trajets
-            -- Ici on sélectionne les trajets qui sont top par jour :
+            -- Ici on selectionne les trajets qui sont top par jour :
             WHERE (jour, (sum_recette - sum_carburant)) IN (
                 SELECT jour, MAX(sum_recette - sum_carburant) FROM (
                     SELECT DATE(m2.dateDebut) AS jour, m2.idTrajet, SUM(m2.montantRecette) AS sum_recette, SUM(m2.montantCarburant) AS sum_carburant
