@@ -92,6 +92,7 @@ INSERT INTO livraison_TypeVehicules (poidsMax) VALUES
 (1000),
 (3000);
 
+--  VEHICULE
 INSERT INTO livraison_Vehicules (nomVehicule, idSociete, idTypeVehicule) VALUES
 ('Toyota Hiace', 1, 2),    -- id 1
 ('Isuzu Cargo', 1, 3),     -- id 2
@@ -99,12 +100,34 @@ INSERT INTO livraison_Vehicules (nomVehicule, idSociete, idTypeVehicule) VALUES
 ('Renault Master', 1, 2),  -- id 4
 ('Mercedes Sprinter', 2, 3); -- id 5
 
+INSERT INTO livraison_Vehicules (nomVehicule, idSociete, idTypeVehicule) VALUES
+('Hyundai Porter', 1, 1),
+('Peugeot Boxer', 2, 2),
+('Fiat Ducato', 1, 3),
+('Mazda Titan', 2, 2),
+('Nissan Caravan', 1, 1);
+
+-- CHAUFFEUR
+-- 5 à 15000 Ar
 INSERT INTO livraison_Chauffeur (nomChauffeur, idSociete, salaire) VALUES
-('Jean RAKOTO', 1, 300000),   -- id 1
-('Paul RASOLO', 1, 320000),   -- id 2
-('Marc RAZA', 2, 280000),     -- id 3
-('Luc RAMANANA', 1, 350000),  -- id 4
-('Pierre RAZAFY', 2, 320000); -- id 5
+('Alain RABE', 1, 15000),
+('Niry ANDO', 2, 15000),
+('Tiana RAKOTONIRINA', 1, 15000),
+('Fanja RAZAFINDRAKOTO', 2, 15000),
+('Joel RAMAROZAKA', 1, 15000);
+
+-- 3 à 18000 Ar
+INSERT INTO livraison_Chauffeur (nomChauffeur, idSociete, salaire) VALUES
+('Eric RANDRIAMAMPIANINA', 2, 18000),
+('Mamy RAKOTOBE', 1, 18000),
+('Sandra RAZANAMASY', 2, 18000);
+
+-- 4 à 20000 Ar
+INSERT INTO livraison_Chauffeur (nomChauffeur, idSociete, salaire) VALUES
+('Lova RAKOTONIAINA', 1, 20000),
+('Hery RAZAFINDRAIBE', 2, 20000),
+('Natacha RAMANANTSOA', 1, 20000),
+('Bema RASOLOFO', 2, 20000);
 
 INSERT INTO livraison_Entrepot (adresseEntrepot, nomEntrepot) VALUES
 ('Anosibe', 'Entrepot Central'),  -- id 1
@@ -179,3 +202,18 @@ JOIN livraison_Vehicules v ON l.idVehicule = v.id
 JOIN livraison_Chauffeur ch ON l.idChauffeur = ch.id
 JOIN livraison_Entrepot e ON l.idEntrepot = e.id
 JOIN livraison_EtatLivraison el ON l.idEtat = el.id;
+
+ALTER TABLE livraison_ZoneLivraison ADD pourcentageZone;
+
+-- ZONE LIVRAISON
+-- 3 zones à 12.5%
+INSERT INTO livraison_ZoneLivraison (zoneLivraison, pourcentageZone) VALUES
+('Centre Ville', 12.5),
+('Zone Nord', 12.5),
+('Zone Sud', 12.5);
+
+-- 2 zones à 0%
+INSERT INTO livraison_ZoneLivraison (zoneLivraison, pourcentageZone) VALUES
+('Zone Est', 0),
+('Zone Ouest', 0);
+

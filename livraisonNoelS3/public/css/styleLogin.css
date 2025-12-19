@@ -192,7 +192,7 @@ input::placeholder {
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.2);
     transform: translate(-50%, -50%);
-    transition: width 0.6s, height 0.6s;
+    transition: width 0.6s, height 0.2s;
 }
 
 .btn-login:hover {
@@ -209,19 +209,6 @@ input::placeholder {
     transform: translateY(-1px);
     box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
 }
-
-.btn-login.green {
-    background: linear-gradient(135deg, var(--emerald) 0%, var(--forest-green) 100%);
-}
-
-.btn-login.green:hover {
-    box-shadow: 0 8px 25px rgba(76, 175, 80, 0.4);
-}
-
-.btn-login.green:active {
-    box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
-}
-
 /* ===== MESSAGE D'ERREUR ===== */
 .error-message {
     background: linear-gradient(135deg, var(--danger-light) 0%, #ffebee 100%);

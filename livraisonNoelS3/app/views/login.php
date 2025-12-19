@@ -10,7 +10,7 @@
 <body>
     <div class="login-container">
         <div class="logo">
-            <h2>🎄 Livraison Noël S3</h2>
+            <h2> Livraison Noël S3</h2>
         </div>
         
         <h1>Connexion Responsable</h1>

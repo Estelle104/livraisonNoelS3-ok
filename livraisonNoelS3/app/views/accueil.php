@@ -18,7 +18,7 @@ $user = $_SESSION['user'];
 <body>
     <header class="header">
         <div class="logo">
-            <h1>🎄 Livraison Noël S3</h1>
+            <h1> Livraison Noël S3</h1>
         </div>
         
         <div class="user-info">
