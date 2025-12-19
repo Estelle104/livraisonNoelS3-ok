@@ -45,6 +45,7 @@ $router->group('', function(Router $router) use ($app) {
     // Bénéfices
     $router->get('/benefice', [BeneficeController::class, 'index']);
     $router->get('/benefice/details', [BeneficeController::class, 'details']);
+    $router->get('/benefice/details/@date', [BeneficeController::class, 'detailsPage']);
 
     // Colis
     $router->post('/colis', [ColisController::class, 'store']);

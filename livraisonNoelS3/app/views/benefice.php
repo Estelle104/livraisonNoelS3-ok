@@ -158,11 +158,13 @@ $annee_op = $_GET['annee_op'] ?? '=';
                                             <input type="hidden" name="jour_op" value="<?php echo $jour_op; ?>">
                                             <input type="hidden" name="mois_op" value="<?php echo $mois_op; ?>">
                                             <input type="hidden" name="annee_op" value="<?php echo $annee_op; ?>">
-                                            <a href="<?= BASE_URL ?>/">
-                                                <button type="submit" class="details-btn">
-                                                    📊 Voir
-                                                </button>
-                                            </a>
+                                            <td>
+                                                <a href="<?= BASE_URL ?>/benefice/details/<?php echo $benefice['jour']; ?>">
+                                                    <button type="button" class="details-btn">
+                                                        📊 Voir plus
+                                                    </button>
+                                                </a>
+                                            </td>
                                         </form>
                                     </td>
                                 </tr>
