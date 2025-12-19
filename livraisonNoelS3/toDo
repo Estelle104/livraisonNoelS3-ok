@@ -113,11 +113,15 @@ fonction
     getAllChauffeur()
     getAllEntrepot()
     saveLivraison()
+    salaireChauffeurPlus       // partie 2 , salaire chaffeur inserer + pourcentage de la zone
 affichage
+
     form 
         inputs : tous les champs de livraison 
                 + select-option des idChauffeur, idVehicule, idEntrepot
                 et si idColis ? select-option : bouton "+" -> form via js pour creer un colis
+
+    button supprimerTousLesLivraisons : supprimer toutes les livraisons // 2 eme partie)
 traitement 
         submit : ajax + saveLivraison()
 integration
@@ -161,3 +165,30 @@ affichage droite (Andry)
         bouton details : voir details
 traitement
     si voir details -> affichage details (cout revient et chiffre d affaire) via js
+
+
+6 page : gestionZoneLivraison (Andry)
+base
+    livraison_ZoneLivraison
+fonction
+    getAllZoneLivraison()
+    saveZoneLivraison()
+    updateZoneLivraison()
+    deleteZoneLivraison()
+
+affichage 
+  div:zoneLivraison  
+    form
+        input : zoneLivraison
+        submit : ajouter zone
+affichage droite (Andry)
+  div:listeZoneLivraison  
+    table
+        titre (champ de livraison_ZoneLivraison)
+        tr : liste des zones
+        ajout bouton modifier et supprimer pour chaque zone
+
+traitement
+    si submit -> saveZoneLivraison() + refresh liste via ajax       
+    si bouton modifier -> updateZoneLivraison()
+    si bouton supprimer -> deleteZoneLivraison()
