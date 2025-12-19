@@ -1,37 +1,37 @@
 -- Supprimer et recréer proprement
-DROP DATABASE IF EXISTS livraisonNoelS3;
-CREATE DATABASE IF NOT EXISTS livraisonNoelS3;
-USE livraisonNoelS3;
+-- DROP DATABASE IF EXISTS livraisonNoelS3;
+-- CREATE DATABASE IF NOT EXISTS livraisonNoelS3;
+-- USE livraisonNoelS3;
 
 -- Tables (garder votre structure originale)
-CREATE TABLE livraison_User(
+CREATE OR REPLACE TABLE livraison_User(
     id INT AUTO_INCREMENT PRIMARY KEY,
     nomUser VARCHAR(50),
     loginUser VARCHAR(20),
     mdp VARCHAR(20)
 );
 
-CREATE TABLE livraison_Societes(
+CREATE OR REPLACE TABLE livraison_Societes(
     id INT AUTO_INCREMENT PRIMARY KEY ,
     nomSociete VARCHAR(25),
     addresseSociete VARCHAR(20)
 );
 
-CREATE TABLE livraison_Vehicules(
+CREATE OR REPLACE TABLE livraison_Vehicules(
     id INT AUTO_INCREMENT PRIMARY KEY,
     nomVehicule VARCHAR(50),
     idSociete INT,
     idTypeVehicule INT 
 );
 
-CREATE TABLE livraison_Chauffeur (
+CREATE OR REPLACE TABLE livraison_Chauffeur (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nomChauffeur VARCHAR(75),
     idSociete INT,
     salaire DOUBLE
 );
 
-CREATE TABLE livraison_Livraison(
+CREATE OR REPLACE TABLE livraison_Livraison(
     id INT AUTO_INCREMENT PRIMARY KEY,
     idColis INT,
     idEntrepot INT,
@@ -44,35 +44,35 @@ CREATE TABLE livraison_Livraison(
     dateLivraison DATETIME
 );
 
-CREATE TABLE livraison_TypeVehicules(
+CREATE OR REPLACE TABLE livraison_TypeVehicules(
     id INT AUTO_INCREMENT PRIMARY KEY,
     poidsMax DOUBLE
 );
 
-CREATE TABLE livraison_Colis(
+CREATE OR REPLACE TABLE livraison_Colis(
     id INT AUTO_INCREMENT PRIMARY KEY,
     descriptionColi VARCHAR(50),
     prixUnitaire DOUBLE,
     poidsColis DOUBLE
 );
 
-CREATE TABLE livraison_Entrepot(
+CREATE OR REPLACE TABLE livraison_Entrepot(
     id INT AUTO_INCREMENT PRIMARY KEY,
     adresseEntrepot VARCHAR(20),
     nomEntrepot VARCHAR(50)
 );
 
-CREATE TABLE livraison_EtatLivraison(
+CREATE OR REPLACE TABLE livraison_EtatLivraison(
     id INT AUTO_INCREMENT PRIMARY KEY,
     etatlivraison VARCHAR(20)
 );
 
-CREATE TABLE livraison_ZoneLivraison(
+CREATE OR REPLACE TABLE livraison_ZoneLivraison(
     id INT AUTO_INCREMENT PRIMARY KEY,
     zoneLivraison VARCHAR(20)
 );
 
-CREATE TABLE livraison_HistoriqueBenefice(
+CREATE OR REPLACE TABLE livraison_HistoriqueBenefice(
     id INT AUTO_INCREMENT PRIMARY KEY,
     dateDonnee DATETIME
 );
@@ -160,7 +160,7 @@ INSERT INTO livraison_Livraison (idColis, idEntrepot, destination, idVehicule, i
 
 DROP VIEW IF EXISTS livraison_v_HistoriqueBenefice;
 
-CREATE VIEW livraison_v_HistoriqueBenefice AS
+CREATE OR REPLACE VIEW livraison_v_HistoriqueBenefice AS
 SELECT 
     DATE(l.dateLivraison) AS jour,
     MONTH(l.dateLivraison) AS mois,
@@ -185,7 +185,7 @@ GROUP BY
 
 DROP VIEW IF EXISTS livraison_v_livraison_detail;
 
-CREATE VIEW livraison_v_livraison_detail AS
+CREATE OR REPLACE VIEW livraison_v_livraison_detail AS
 SELECT 
     l.id,
     c.descriptionColi,
@@ -203,7 +203,9 @@ JOIN livraison_Chauffeur ch ON l.idChauffeur = ch.id
 JOIN livraison_Entrepot e ON l.idEntrepot = e.id
 JOIN livraison_EtatLivraison el ON l.idEtat = el.id;
 
-ALTER TABLE livraison_ZoneLivraison ADD pourcentageZone;
+ALTER TABLE livraison_ZoneLivraison
+ADD pourcentageZone DECIMAL(5,2);
+
 
 -- ZONE LIVRAISON
 -- 3 zones à 12.5%
