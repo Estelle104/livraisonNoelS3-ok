@@ -29,9 +29,16 @@ $user = $_SESSION['user'];
     </header>
     
     <main class="main-container">
+        
         <!--  gauche : Formulaire d'insertion (Estelle) -->
         <section class="section">
+            <form id="livraisonSupprimer" action="<?= BASE_URL ?>/livraison/supprimerTout" method="POST">
+                <input type="number" name="code" placeholder="Entrez 9999 pour confirmer et supprimer tout" required>
+                <button type="submit" class="btn-primary" onclick="return confirm('Êtes-vous sûr de vouloir supprimer toutes les livraisons ?')">🗑️ Supprimer toutes les livraisons</button>
+            </form>
             <h2 class="section-title">➕ Nouvelle Livraison</h2>
+
+            
             
             <div id="message" class="message"></div>
             
@@ -66,9 +73,18 @@ $user = $_SESSION['user'];
                 </div>
                 
                 <div class="form-group">
-                    <label for="destination">Destination *</label>
-                    <input type="text" id="destination" name="destination" 
-                           placeholder="Ex: Antananarivo Centre" required>
+                    <label for="idDestination">Destination *</label>
+                    <select id="idDestination" name="idDestination" required>
+                        <option value="">Sélectionnez une destination</option>
+                        <?php foreach ($destinations as $destination): ?>
+                            <option value="<?php echo $destination['id']; ?>">
+                                <!-- <?php echo htmlspecialchars($destination['nomDestination'] . 
+                                    (isset($destination['zoneLivraison']) ? 
+                                    ' (' . $destination['zoneLivraison'] . ')' : '')); ?> -->
+                                <?php echo htmlspecialchars($destination['zoneLivraison']); ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
                 </div>
                 
                 <div class="form-row">
@@ -97,7 +113,7 @@ $user = $_SESSION['user'];
                     </div>
                 </div>
                 
-                <div class="form-row">
+                <!-- <div class="form-row">
                     <div class="form-group">
                         <label for="coutVoiture">Coût véhicule (Ar)</label>
                         <input type="number" id="coutVoiture" name="coutVoiture" 
@@ -109,7 +125,7 @@ $user = $_SESSION['user'];
                         <input type="number" id="salaireChauffeur" name="salaireChauffeur" 
                                step="0.01" min="0" placeholder="0.00">
                     </div>
-                </div>
+                </div> -->
                 
                 <div class="form-group">
                     <label for="dateLivraison">Date de livraison prévue</label>
@@ -139,6 +155,8 @@ $user = $_SESSION['user'];
                             <th>Colis</th>
                             <th>Véhicule</th>
                             <th>Chauffeur</th>
+                            <th>Salaire de base</th>
+                            <th>Salaire + zone</th>
                             <th>Destination</th>
                             <th>Date</th>
                             <th>Statut</th>
@@ -159,7 +177,9 @@ $user = $_SESSION['user'];
                                     <td><?php echo htmlspecialchars($livraison['descriptionColi']); ?></td>
                                     <td><?php echo htmlspecialchars($livraison['nomVehicule']); ?></td>
                                     <td><?php echo htmlspecialchars($livraison['nomChauffeur']); ?></td>
-                                    <td><?php echo htmlspecialchars($livraison['destination']); ?></td>
+                                    <td><?php echo number_format($livraison['salaire'] , 2, ',', ' '); ?> Ar</td>
+                                    <td><?php echo number_format($livraison['salaire'] + (($livraison['pourcentageZone'] / 100) * $livraison['salaire']), 2, ',', ' '); ?> Ar</td>
+                                    <td><?php echo htmlspecialchars($livraison['nomDestination']); ?></td>
                                     <td><?php echo date('d/m/Y H:i', strtotime($livraison['dateLivraison'])); ?></td>
                                     <td>
                                         <?php 

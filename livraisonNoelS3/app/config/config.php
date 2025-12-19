@@ -53,7 +53,7 @@ $app->path(__DIR__ . $ds . '..' . $ds . '..');
 // define('BASE_URL', '/ETU004185/livraisonNoelS3');
 define(
     'BASE_URL',
-    '/S3/mrRojo/ProjetBinome/livraisonNoelS3-oui/livraisonNoelS3'
+    '/WEB/S3/Framework/githubDesktop/livraisonNoelS3-ok/livraisonNoelS3'
 );
 
 // define(

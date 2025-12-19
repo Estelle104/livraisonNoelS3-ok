@@ -7,6 +7,7 @@ use app\models\Vehicule;
 use app\models\Chauffeur;
 use app\models\Entrepot;
 use app\models\EtatLivraison;
+use app\models\Destination;
 
 class LivraisonController {
     public function index() {
@@ -22,12 +23,14 @@ class LivraisonController {
         $vehiculeModel = new Vehicule();
         $chauffeurModel = new Chauffeur();
         $entrepotModel = new Entrepot();
+        $destinationModel = new Destination();
 
         $livraisons = $livraisonModel->getAll();
         $colis = $colisModel->getAll();
         $vehicules = $vehiculeModel->getAll();
         $chauffeurs = $chauffeurModel->getAll();
         $entrepots = $entrepotModel->getAll();
+        $destinations = $destinationModel->getAll();
 
         include __DIR__ . '/../views/gestionLivraison.php';
     }
@@ -60,7 +63,7 @@ class LivraisonController {
             $data = [
                 'idColis' => $_POST['idColis'] ?? null,
                 'idEntrepot' => $_POST['idEntrepot'] ?? null,
-                'destination' => $_POST['destination'] ?? '',
+                'idDestination' => $_POST['idDestination'] ?? '',
                 'idVehicule' => $_POST['idVehicule'] ?? null,
                 'idEtat' => 1, // EN_ATTENTE
                 'idChauffeur' => $_POST['idChauffeur'] ?? null,
@@ -132,5 +135,34 @@ class LivraisonController {
 
         header('Content-Type: application/json');
         echo json_encode(['success' => true]);
+    }
+
+    public function deleteAll() {
+        // session_start();
+
+        $code = $_POST['code'] ?? null;
+        
+        if (!isset($_SESSION['logged_in'])) {
+            http_response_code(401);
+            echo json_encode(['error' => 'Non autorisé']);
+            exit();
+        }
+        if($code === null){
+            http_response_code(400);
+            echo json_encode(['error' => 'Code manquant']);
+            exit();
+        }
+        if($code !== '9999'){
+            http_response_code(403);
+            echo json_encode(['error' => 'Code incorrect']);
+            exit();
+        }
+
+        if ($code = '9999') {
+            $livraisonModel = new Livraison();
+            $livraisonModel->deleteAll();
+            header('Content-Type: application/json');
+            echo json_encode(['success' => true]);
+        }
     }
 }

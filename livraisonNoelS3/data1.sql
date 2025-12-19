@@ -148,15 +148,15 @@ INSERT INTO livraison_User (nomUser, loginUser, mdp) VALUES
 ('Andry', 'andry', '1234');
 
 -- Maintenant les livraisons avec des clés valides
-INSERT INTO livraison_Livraison (idColis, idEntrepot, destination, idVehicule, idEtat, coutVoiture, salaireJournalier, idChauffeur, dateLivraison) VALUES
-(1, 1, 'Antananarivo Centre', 1, 2, 50000, 15000, 1, '2024-12-10 08:30:00'),
-(2, 2, 'Analamanga', 2, 2, 75000, 20000, 2, '2024-12-11 10:15:00'),
-(3, 1, 'Itasy', 3, 1, 60000, 18000, 3, '2024-12-12 09:00:00'),
-(4, 1, 'Vakinankaratra', 4, 2, 85000, 22000, 4, '2024-12-09 14:45:00'),
-(5, 2, 'Haute Matsiatra', 5, 3, 90000, 25000, 5, '2024-12-08 11:30:00'),
-(6, 1, 'Atsinanana', 1, 2, 70000, 19000, 1, '2024-12-13 16:20:00'),
-(7, 2, 'Antananarivo Centre', 2, 1, 55000, 16000, 2, '2024-12-14 08:00:00'),
-(8, 1, 'Analamanga', 3, 2, 80000, 21000, 3, '2024-12-07 13:15:00');
+-- INSERT INTO livraison_Livraison (idColis, idEntrepot, destination, idVehicule, idEtat, coutVoiture, salaireJournalier, idChauffeur, dateLivraison) VALUES
+-- (1, 1, 'Antananarivo Centre', 1, 2, 50000, 15000, 1, '2024-12-10 08:30:00'),
+-- (2, 2, 'Analamanga', 2, 2, 75000, 20000, 2, '2024-12-11 10:15:00'),
+-- (3, 1, 'Itasy', 3, 1, 60000, 18000, 3, '2024-12-12 09:00:00'),
+-- (4, 1, 'Vakinankaratra', 4, 2, 85000, 22000, 4, '2024-12-09 14:45:00'),
+-- (5, 2, 'Haute Matsiatra', 5, 3, 90000, 25000, 5, '2024-12-08 11:30:00'),
+-- (6, 1, 'Atsinanana', 1, 2, 70000, 19000, 1, '2024-12-13 16:20:00'),
+-- (7, 2, 'Antananarivo Centre', 2, 1, 55000, 16000, 2, '2024-12-14 08:00:00'),
+-- (8, 1, 'Analamanga', 3, 2, 80000, 21000, 3, '2024-12-07 13:15:00');
 
 DROP VIEW IF EXISTS livraison_v_HistoriqueBenefice;
 
@@ -165,21 +165,34 @@ SELECT
     DATE(l.dateLivraison) AS jour,
     MONTH(l.dateLivraison) AS mois,
     YEAR(l.dateLivraison) AS annee,
-
+    l.idVehicule,
+    v.nomVehicule,
+    s.nomSociete,
+    COUNT(DISTINCT l.id) AS nombre_livraisons,
     SUM(c.prixUnitaire * c.poidsColis) AS chiffreAffaire,
-
     SUM(l.coutVoiture + l.salaireJournalier) AS coutRevient,
-
     SUM(
         (c.prixUnitaire * c.poidsColis) 
         - (l.coutVoiture + l.salaireJournalier)
-    ) AS benefice
+    ) AS benefice,
+
+    AVG(
+        (c.prixUnitaire * c.poidsColis) 
+        - (l.coutVoiture + l.salaireJournalier)
+    ) AS benefice_moyen_par_livraison,
+
+    AVG(l.coutVoiture) AS cout_vehicule_moyen,
+    AVG(l.salaireJournalier) AS salaire_moyen
 
 FROM livraison_Livraison l
 JOIN livraison_Colis c ON l.idColis = c.id
+JOIN livraison_Vehicules v ON l.idVehicule = v.id
+JOIN livraison_Societes s ON v.idSociete = s.id
 WHERE l.idEtat = 2   -- LIVRÉ
 GROUP BY 
-    jour, mois, annee;
+    jour, mois, annee, l.idVehicule, v.nomVehicule, s.nomSociete
+ORDER BY 
+    annee DESC, mois DESC, jour DESC, benefice DESC;
 
 
 
@@ -219,3 +232,31 @@ INSERT INTO livraison_ZoneLivraison (zoneLivraison, pourcentageZone) VALUES
 ('Zone Est', 0),
 ('Zone Ouest', 0);
 
+ALTER TABLE livraison_Livraison
+CHANGE COLUMN destination idDestination INT;
+
+-- CREATE OR REPLACE TABLE livraison_Destination(
+--     id INT AUTO_INCREMENT PRIMARY KEY,
+--     nomDestination VARCHAR(30),
+--     idZoneLivraison INT
+-- );
+
+-- Insérer les destinations avant les livraisons
+-- INSERT INTO livraison_Destination (nomDestination, idZoneLivraison) VALUES
+-- ('Antananarivo Centre', 1),    -- Centre Ville
+-- ('Analamanga', 3),             -- Zone Sud
+-- ('Itasy', 4),                  -- Zone Est
+-- ('Vakinankaratra', 2),         -- Zone Nord
+-- ('Haute Matsiatra', 5),        -- Zone Ouest
+-- ('Atsinanana', 4);             -- Zone Est
+
+-- Remplacer votre INSERT de livraison_Livraison par :
+INSERT INTO livraison_Livraison (idColis, idEntrepot, idDestination, idVehicule, idEtat, coutVoiture, salaireJournalier, idChauffeur, dateLivraison) VALUES
+(1, 1, 1, 1, 2, 50000, 15000, 1, '2024-12-10 08:30:00'),  -- Antananarivo Centre
+(2, 2, 2, 2, 2, 75000, 20000, 2, '2024-12-11 10:15:00'),  -- Analamanga
+(3, 1, 3, 3, 1, 60000, 18000, 3, '2024-12-12 09:00:00'),   -- Itasy
+(4, 1, 4, 4, 2, 85000, 22000, 4, '2024-12-09 14:45:00'),  -- Vakinankaratra
+(5, 2, 5, 5, 3, 90000, 25000, 5, '2024-12-08 11:30:00'),  -- Haute Matsiatra
+(6, 1, 6, 1, 2, 70000, 19000, 1, '2024-12-13 16:20:00'),  -- Atsinanana
+(7, 2, 1, 2, 1, 55000, 16000, 2, '2024-12-14 08:00:00'),  -- Antananarivo Centre
+(8, 1, 2, 3, 2, 80000, 21000, 3, '2024-12-07 13:15:00');  -- Analamanga

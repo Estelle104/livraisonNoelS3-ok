@@ -192,3 +192,5 @@ traitement
     si submit -> saveZoneLivraison() + refresh liste via ajax       
     si bouton modifier -> updateZoneLivraison()
     si bouton supprimer -> deleteZoneLivraison()
+
+-- suite de la partie 2

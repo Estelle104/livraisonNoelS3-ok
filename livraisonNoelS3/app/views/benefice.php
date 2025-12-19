@@ -126,6 +126,7 @@ $annee_op = $_GET['annee_op'] ?? '=';
                     <thead>
                         <tr>
                             <th>Date</th>
+                            <th>Vehicule</th>
                             <th>Chiffre d'Affaire</th>
                             <th>Coût Revient</th>
                             <th>Benefice</th>
@@ -141,8 +142,9 @@ $annee_op = $_GET['annee_op'] ?? '=';
                             </tr>
                         <?php else: ?>
                             <?php foreach ($benefices as $benefice): ?>
-                                <tr>
+                                <tr>  
                                     <td><?php echo date('d/m/Y', strtotime($benefice['jour'])); ?></td>
+                                    <td><?php echo htmlspecialchars($benefice['nomVehicule']); ?></td>
                                     <td><?php echo number_format($benefice['chiffreAffaire'], 2, ',', ' '); ?> Ar</td>
                                     <td><?php echo number_format($benefice['coutRevient'], 2, ',', ' '); ?> Ar</td>
                                     <td class="<?php echo $benefice['benefice'] >= 0 ? 'positive' : 'negative'; ?>">

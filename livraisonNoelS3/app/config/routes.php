@@ -40,6 +40,7 @@ $router->group('', function(Router $router) use ($app) {
     // $router->put('/livraison/@id:[0-9]+', [LivraisonController::class, 'update']);
     $router->post('/livraison/@id:[0-9]+', [LivraisonController::class, 'updateEtat']);
     // $router->delete('/livraison/@id:[0-9]+', [LivraisonController::class, 'delete']);
+    $router->post('/livraison/supprimerTout', [LivraisonController::class, 'deleteAll']);
 
     // Bénéfices
     $router->get('/benefice', [BeneficeController::class, 'index']);
