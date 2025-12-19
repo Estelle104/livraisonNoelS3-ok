@@ -51,7 +51,7 @@ $router->group('', function(Router $router) use ($app) {
 
     // Redirection racine
     $router->get('/', function() use ($app) {
-        $app->redirect('/accueil');
+        $app->redirect('/login');
     });
 
 }, [ SecurityHeadersMiddleware::class ]);
